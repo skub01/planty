@@ -6,7 +6,6 @@ const BackButton = () => {
     if (scrollPosition) {
       window.scrollTo(0, parseInt(scrollPosition));
     }
-    // Go back to the AllRecipes page
     window.history.back();
   };
 

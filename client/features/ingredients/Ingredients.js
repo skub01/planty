@@ -18,7 +18,12 @@ const Ingredients = (props) => {
     }, acc);
   }, {});
 
+  const [selectedCourse, setSelectedCourse] = useState("main course"); 
   const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
+
+  const handleCourseChange = (event) => {
+    setSelectedCourse(event.target.value);
+  };
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -34,23 +39,19 @@ const Ingredients = (props) => {
     navigate('/recommended');
   };
 
-  const handleRecipeTypeChange = (event) => {
-    // some kind of filter here? 
-  };
-
   const handleDietaryRestrictionChange = (event) => {
     // another filter
   };
 
   return (
-    <div>
+    <div className="ingredients-container">
         <h1>What kind of recipe are you looking for?</h1>
         <label>
         <input
           type="radio"
           name="recipeType"
-          value="Breakfast"
-          onChange={handleRecipeTypeChange}
+          value="breakfast"
+          onChange={handleCourseChange}
         />
         Breakfast
       </label>
@@ -58,26 +59,26 @@ const Ingredients = (props) => {
         <input
           type="radio"
           name="recipeType"
-          value="Lunch"
-          onChange={handleRecipeTypeChange}
+          value="main course"
+          onChange={handleCourseChange}
         />
-        Lunch
+        Main Course
       </label>
       <label>
         <input
           type="radio"
           name="recipeType"
-          value="Dinner"
-          onChange={handleRecipeTypeChange}
+          value="side dish"
+          onChange={handleCourseChange}
         />
-        Dinner
+        Side Dish
       </label>
       <label>
         <input
           type="radio"
           name="recipeType"
-          value="Snack"
-          onChange={handleRecipeTypeChange}
+          value="snack"
+          onChange={handleCourseChange}
         />
         Snack
       </label>
@@ -85,10 +86,28 @@ const Ingredients = (props) => {
         <input
           type="radio"
           name="recipeType"
-          value="Dessert"
-          onChange={handleRecipeTypeChange}
+          value="dessert"
+          onChange={handleCourseChange}
         />
         Dessert
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="recipeType"
+          value="appetizer"
+          onChange={handleCourseChange}
+        />
+        Appetizer
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="recipeType"
+          value="salad"
+          onChange={handleCourseChange}
+        />
+        Salad
       </label>
 
       <h1>Any dietary restrictions?</h1>

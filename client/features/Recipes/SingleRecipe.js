@@ -44,21 +44,21 @@ const SingleRecipe = (props) => {
       {recipe ? (
         <>
           <div>
-            <h2>{recipe.name} 
+            <h2>{recipe.title} 
             <button className="add-favorite" onClick={() => handleAddFavorite(recipe.id)}>Favorite</button></h2>
             <img src={recipe.image} className="recipe-img" />
             <p>Instructions: {recipe.instructions}</p>
-       
+      
             <div>
               <h3>Ingredients:</h3>
               <ul>
-                {recipe.ingredients.map((ingredient) => (
+                {recipe.extendedIngredients.map((ingredient) => (
                   <li key={ingredient.id}>
-                    {ingredient.name} - {ingredient.recipeIngredient.amount}
+                    {ingredient.original}
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> 
               <BackButton />
           </div>
         </>

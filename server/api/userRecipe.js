@@ -7,15 +7,15 @@ module.exports = router;
 // get all favorites from a certain user
 router.get("/:userId", async (req, res, next) => {
   try {
-    const favorites = await User.findAll({
-      where: { id: req.params.userId }, 
-      include: [{
+    const favorites = await UserRecipe.findAll({
+      where: { userId: req.params.userId }, 
+     /*  include: [{
         model: Recipe,
         through: {
           where: {
             userId: req.params.userId },
           },
-      }],
+      }], */
     });
       res.json(favorites);
   } catch (err) {

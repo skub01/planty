@@ -13,28 +13,22 @@ const Navbar = () => {
   };
 
   return (
-    <div>
-      <h1>Planty</h1>
-      <nav>
+    <div className="navbar-container">
+      <div className="nav-links">
+      <Link to="/home">Home</Link>
+        <Link to="/allrecipes">Browse Recipes</Link>
+        {isLoggedIn && <Link to="/favorites">Favorites</Link>}
+        </div>
         {isLoggedIn ? (
-          <div>
-            <Link to="/home">Home</Link>
-            <Link to="/allrecipes">Browse Recipes</Link>
-            <Link to="/favorites">Favorites</Link>
-            <button type="button" onClick={logoutAndRedirectHome}>
-              Logout
-            </button>
-          </div>
-        ) : (
-          <div>
-            <Link to="/home">Home</Link>
-            <Link to="/allrecipes">Browse Recipes</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </div>
-        )}
-      </nav>
-      <hr />
+        <button className="logout-button" onClick={logoutAndRedirectHome}>
+          Logout
+        </button>
+      ) : (
+        <div className="nav-auth-links">
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Sign Up</Link>
+        </div>
+      )}
     </div>
   );
 };

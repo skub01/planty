@@ -1,15 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const apiKey = "3e2c0b66e4a54b4aaf9fc39057ed1697";
+const apiKey = "bb962a282f1d4567a7587b0faea1ecd6";
 
-export const getAllRecipes = createAsyncThunk("getAllRecipes", async () => {
+export const getAllRecipes = createAsyncThunk("getAllRecipes", async ({ intolerances, type }) => {
   try {
+    const params = {
+      apiKey: apiKey,
+      diet: "vegan",
+      number: 3,
+      sort: "random",
+    };
+    if (intolerances) {
+      params.intolerances = intolerances;
+    }
+    if (type) {
+      params.type = type;
+    }
+    console.log('params', params)
     const response = await axios.get("https://api.spoonacular.com/recipes/complexSearch", {
-      params: {
-        apiKey: apiKey,
-        query: "vegan", 
-        number: 50, 
-      },
+      params: params,
     });
     return response.data.results;
   } catch (err) {
@@ -26,17 +35,20 @@ export const getIngredientRecipes = createAsyncThunk(
         .map(([name]) => name)
         .join(",");
 
+        console.log("query!!", ingredientsQuery)
+
       const response = await axios.get(
-        "https://api.spoonacular.com/recipes/complexSearch",
+        "https://api.spoonacular.com/recipes/findByIngredients",
         {
           params: {
             apiKey: apiKey,
-            query: "vegan",
+            ingredients: ingredientsQuery,
+            diet: "vegan",
             number: 5,
-            includeIngredients: ingredientsQuery,
           },
         }
       );
+      console.log("response!!!", response.data)
       return response.data.results;
     } catch (err) {
       console.log(err);

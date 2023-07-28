@@ -4,13 +4,15 @@ import authReducer from '../features/auth/authSlice';
 import allRecipesSlice from '../store/allRecipesSlice';
 import userRecipesSlice from '../store/userRecipesSlice';
 import singleRecipeSlice from '../store/singleRecipeSlice';
+import favoritesSlice from '../store/favoritesSlice';
 
 const store = configureStore({
   reducer: { 
     auth: authReducer,
     recipes: allRecipesSlice,
     singleRecipe: singleRecipeSlice,
-    userRecipes: userRecipesSlice
+    userRecipes: userRecipesSlice,
+    favorites: favoritesSlice,
  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

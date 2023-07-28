@@ -5,8 +5,15 @@ export const getSingleRecipe = createAsyncThunk(
   "singleRecipe",
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/recipes/${id}`);
-      return data;
+      const response = await axios.get(
+        `https://api.spoonacular.com/recipes/${id}/information`,
+        {
+          params: {
+            apiKey: "bb962a282f1d4567a7587b0faea1ecd6",
+          },
+        }
+      );
+      return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
