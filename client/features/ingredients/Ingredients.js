@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ingredientCategories } from './IngredientList'
 import { getIngredientRecipes } from '../../store/allRecipesSlice';
 import { useNavigate } from 'react-router-dom'; 
+import Recommended from '../Recipes/Recommended';
 
 
 const Ingredients = (props) => {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.me.username);
   const navigate = useNavigate();
+  const allIngredientsRef = useRef(null);
+  const dietaryRestrictionsRef = useRef(null);
 
   const initialCheckboxes = ingredientCategories.reduce((acc, { ingredients }) => {
     const ingredientsNames = ingredients.map((ingredient) => ingredient.name);
@@ -20,6 +23,7 @@ const Ingredients = (props) => {
 
   const [selectedCourse, setSelectedCourse] = useState("main course"); 
   const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
+  const recipes = useSelector((state) => state.recipes.recipes);
 
   const handleCourseChange = (event) => {
     setSelectedCourse(event.target.value);
@@ -33,19 +37,28 @@ const Ingredients = (props) => {
   const handleFindRecipes = () => {
     const selectedIngredients = Object.entries(checkboxes)
       .filter(([name, checked]) => checked)
-      .map(([name]) => name);
+      .map(([name]) => name)
+      .join(",");
 
     dispatch(getIngredientRecipes(selectedIngredients));
-    navigate('/recommended');
+    dietaryRestrictionsRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleDietaryRestrictionChange = (event) => {
-    // another filter
+    allIngredientsRef.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    if (recipes.length > 0) {
+      navigate('/recommended');
+    }
+  }, [recipes, navigate]);
 
   return (
     <div className="ingredients-container">
+    
         <h1>What kind of recipe are you looking for?</h1>
+        <div id="mealtype">
         <label>
         <input
           type="radio"
@@ -109,38 +122,59 @@ const Ingredients = (props) => {
         />
         Salad
       </label>
-
+      </div>
+   
       <h1>Any dietary restrictions?</h1>
+      <div id="dietaryRestrictions">
       <label>
         <input
           type="radio"
           name="dietaryRestriction"
-          value="Nut-free"
+          value="tree nuts"
           onChange={handleDietaryRestrictionChange}
         />
-        Nut-free
+        Tree nuts
       </label>
       <label>
         <input
           type="radio"
           name="dietaryRestriction"
-          value="Gluten-free"
+          value="Peanuts"
           onChange={handleDietaryRestrictionChange}
         />
-        Gluten-free
+        Peanuts
       </label>
       <label>
         <input
           type="radio"
           name="dietaryRestriction"
-          value="Soy-free"
+          value="Gluten"
           onChange={handleDietaryRestrictionChange}
         />
-        Soy-free
+        Gluten
       </label>
-
+      <label>
+        <input
+          type="radio"
+          name="dietaryRestriction"
+          value="sesame"
+          onChange={handleDietaryRestrictionChange}
+        />
+        Sesame
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="dietaryRestriction"
+          value="Soy"
+          onChange={handleDietaryRestrictionChange}
+        />
+        Soy
+      </label>
+</div>
 
         <h1>What's in your kitchen?</h1>
+        <div id="allIngredients">
         {ingredientCategories.map(({ category, ingredients }) => (
         <div key={category}>
           <h2>{category}</h2>
@@ -157,7 +191,9 @@ const Ingredients = (props) => {
           ))}
         </div>
       ))}
+      </div>
       <button onClick={handleFindRecipes}>Find recipes</button>
+      {recipes.length > 0 && <Recommended recipes={recipes} />}
   </div>
 );
 };

@@ -387,12 +387,12 @@ async function seed() {
     // Ingredients for Vegan Chocolate Cake
     RecipeIngredient.create({
       recipeId: recipes[4].id,
-      ingredientId: 3, // Flour (Ingredient ID is 3)
+      ingredientId: 3, // Flour 
       amount: "1 1/2 Cups",
     }),
     RecipeIngredient.create({
       recipeId: recipes[4].id,
-      ingredientId: 4, // Sugar (Ingredient ID is 4)
+      ingredientId: 4, // Sugar 
       amount: "1 Cup",
     }),
     RecipeIngredient.create({

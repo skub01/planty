@@ -20,7 +20,7 @@ const Home = (props) => {
 
       <p>...and the best part? It's all plant based!</p></p>
 
-      <button className="get-started-button" onClick={handleGetStarted}>Get started</button>
+      <button className="get-started-button" onClick={handleGetStarted}>Let's get cooking!</button>
     </div>
   );
 };

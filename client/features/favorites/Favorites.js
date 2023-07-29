@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getFavoriteRecipe } from '../../store/favoritesSlice';
-
+import { getUserRecipes } from "../../store/userRecipesSlice";
 
 const Favorites = (props) => {
+    const userId = useSelector((state) => state.auth.me.id);
   const username = useSelector((state) => state.auth.me.username);
   const favorites = useSelector((state) => state.userRecipes.userRecipes);
   const favoriteRecipes = useSelector((state) => state.favorites.favoriteRecipes);
   const dispatch = useDispatch();
-  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
       const fetchFavorites = async () => {
         const recipeIds = favorites.map((favorite) => favorite.recipeId);
-
         const newRecipeIds = recipeIds.filter(
           (id) => !favoriteRecipes.some((recipe) => recipe.id === id)
         );
@@ -24,7 +23,7 @@ const Favorites = (props) => {
         });
       };
       fetchFavorites();
-  }, [favorites, dispatch]);
+  }, [favorites, favoriteRecipes, dispatch, userId]);
 
   return (
     

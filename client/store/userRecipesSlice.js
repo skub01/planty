@@ -13,11 +13,11 @@ export const getUserRecipes = createAsyncThunk("getFavs", async (id) => {
 
 export const addFavorite = createAsyncThunk(
   "addFav",
-  async ({ userId, recipeId }) => {
+  async ({ userId, recipeId, title, image }) => {
     try {
       const { data } = await axios.post(
         `/api/userrecipes/${userId}/addFavorite`,
-        { recipeId }
+        { recipeId, title, image }
       );
       return data;
     } catch (err) {
@@ -32,8 +32,7 @@ export const removeFavorite = createAsyncThunk(
   async ({ userId, recipeId }) => {
     try {
       const { data } = await axios.delete(
-        `/api/userrecipes/${userId}/removeFavorite`,
-        { recipeId }
+        `/api/userrecipes/${userId}/removeFavorite/${recipeId}`
       );
       return data;
     } catch (err) {

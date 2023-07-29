@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const apiKey = "bb962a282f1d4567a7587b0faea1ecd6";
+//const apiKey = "bb962a282f1d4567a7587b0faea1ecd6";
+const apiKey = "3e2c0b66e4a54b4aaf9fc39057ed1697";
+
 
 export const getAllRecipes = createAsyncThunk("getAllRecipes", async ({ intolerances, type }) => {
   try {
@@ -30,26 +32,20 @@ export const getIngredientRecipes = createAsyncThunk(
   "getIngredientRecipes",
   async (selectedIngredients) => {
     try {
-      const ingredientsQuery = Object.entries(selectedIngredients)
-        .filter(([, checked]) => checked)
-        .map(([name]) => name)
-        .join(",");
-
-        console.log("query!!", ingredientsQuery)
-
+      console.log("ingredients!!!", selectedIngredients)
       const response = await axios.get(
         "https://api.spoonacular.com/recipes/findByIngredients",
         {
           params: {
             apiKey: apiKey,
-            ingredients: ingredientsQuery,
+            ingredients: selectedIngredients,
             diet: "vegan",
-            number: 5,
+            number: 3,
           },
         }
       );
       console.log("response!!!", response.data)
-      return response.data.results;
+      return response.data;
     } catch (err) {
       console.log(err);
       throw err;
@@ -69,6 +65,7 @@ const allRecipesSlice = createSlice({
       state.recipes = payload;
     });
     builder.addCase(getIngredientRecipes.fulfilled, (state, { payload }) => {
+      console.log('payload here:', payload)
       state.recipes = payload;
     });
   },

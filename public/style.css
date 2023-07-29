@@ -15,6 +15,11 @@
   src: url('/fonts/Super Cereal.ttf') format('truetype'), 
 }
 
+@font-face {
+  font-family: 'Hey Comic'; 
+  src: url('/fonts/Hey Comic.ttf') format('truetype'), 
+}
+
 #app {
   background-image: url('/bg.jpg');
   height: 100%;
@@ -47,11 +52,33 @@ body {
   color: rgb(245, 230, 216); 
   margin-bottom: 20px;
 font-style: italic;
- text-shadow: 4px 4px 6px rgb(58, 0, 112) 
+ text-shadow: 4px 4px 6px rgb(58, 0, 112);
+ margin-bottom: 400px;
 }
 
 .description {
+  font-family: 'Hey Comic';
+  font-size: 48px;
+  text-align: center;
+  color: rgb(245, 230, 216); 
   margin-bottom: 400px;
+  background-color: rgba(0, 0, 0, 0.59); 
+  clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 50% 100%, 0% 80%);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.get-started-button {
+  font-family: 'Hey Comic';
+  font-size: 40px;
+  animation: pulse 2s infinite;
+  border-radius: 20px;
+  margin-bottom: 200px;
+  box-shadow: 0 0 10px rgb(255, 247, 0);
 }
 
 
@@ -89,7 +116,7 @@ button:hover {
 }
 
 .navbar-container {
-  background-color: rgba(1, 71, 1, 0.7);
+  background-color: rgba(23, 0, 37, 0.7);
   padding: 10px;
   display: flex;
   justify-content: space-between; 
@@ -262,15 +289,24 @@ button:hover {
   margin-bottom: 8px;
 }
 
-.ingredients-container {
-  background-color: #1a1a1a63;
-  color: #ffffff;
-  padding: 20px;
+.single-recipe-container {
+background-color: rgb(249, 247, 220);
+padding: 10px;
 }
 
+.ingredients-container {
+  color: #222020;
+  padding: 20px;
+  font-family: 'Hey Comic';
+  font-size: 22px;
+}
+
+
 .ingredients-container h1 {
-  font-size: 24px;
-  color: rgb(197, 197, 197);
+  font-family: 'Hey Comic';
+  font-size: 40px;
+  text-align: center;
+  color: rgb(254, 242, 242);
   margin-bottom: 10px;
 }
 
@@ -286,23 +322,20 @@ button:hover {
 
 .ingredients-container input[type="radio"],
 .ingredients-container input[type="checkbox"] {
-  margin-right: 5px;
+  margin-right: 10px;
+  font-family: 'Hey Comic';
+  font-size: 22px;
 }
 
 .ingredients-container button {
-  background-color: #007bff;
-  color: #ffffff;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 20px;
+    font-family: 'Hey Comic';
+    font-size: 40px;
+    animation: pulse 2s infinite;
+    border-radius: 20px;
+    margin-bottom: 200px;
+    box-shadow: 0 0 10px rgb(255, 247, 0);
+  align-self: center;
 }
-
-.ingredients-container button:hover {
-  background-color: #0056b3;
-}
-
 
 .ingredients-container .ingredient-category {
   margin-bottom: 20px;
@@ -314,6 +347,21 @@ button:hover {
 
 .ingredients-container .ingredient-item {
   margin-bottom: 5px;
+}
+
+#dietaryRestrictions,
+#mealtype,
+#allIngredients {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+ margin-bottom: 200px;
+ background-color: rgba(222, 196, 171, 0.87)	
+}
+
+#dietaryRestrictions h1,
+#allIngredients h2 {
+  flex-basis: 100%;
 }
 
 .favorites-container {

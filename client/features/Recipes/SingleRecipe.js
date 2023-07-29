@@ -5,37 +5,48 @@ import { useParams } from "react-router-dom";
 import { getSingleRecipe } from "../../store/singleRecipeSlice";
 import BackButton from "./BackButton";
 import { addFavorite, getUserRecipes, removeFavorite } from "../../store/userRecipesSlice";
+import Toastify from 'toastify-js'
+import { getFavoriteRecipe } from "../../store/favoritesSlice";
 
 const SingleRecipe = (props) => {
   const userId = useSelector((state) => state.auth.me.id);
   const favorites = useSelector((state) => state.userRecipes.userRecipes);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [isFavorite, setIsFavorite] = useState(false); 
 
   useEffect(() => {
     if (id) {
       dispatch(getSingleRecipe(id));
     };
-  }, [dispatch, id]);
+  }, [dispatch, id, userId]);
 
   const recipe = useSelector((state) => state.singleRecipe.singleRecipe);
+  console.log('recipeeeee', recipe)
+  const isFavorite = favorites.some((fav) => fav.recipeId === recipe?.id);
 
-  const handleAddFavorite = (recipeId) => {
+  const handleAddFavorite = async (recipeId, title, image) => {
     if (userId) {
-      const isAlreadyFavorite = favorites.some(
-        (fav) => fav.recipeId === recipeId && fav.userId === userId
-      );
-  
-      if (isAlreadyFavorite) {
-
-        dispatch(removeFavorite({ userId, recipeId }));
-      } else {
- 
-        dispatch(addFavorite({ userId, recipeId }));
+      try {
+        if (isFavorite) {
+    dispatch(removeFavorite({ userId, recipeId: id }));
+        } else {
+      dispatch(addFavorite({ userId, recipeId, title, image }));
+        }
+        dispatch(getUserRecipes(userId)); 
+      } catch (error) {
+        console.log(error);
       }
     } else {
-      alert("Please log in or register to save recipes to your favorites!");
+      Toastify({
+        text: "Please log in or register to save recipes to your favorites!",
+        duration: 2000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+        },
+      }).showToast();
     }
   };
 
@@ -43,11 +54,13 @@ const SingleRecipe = (props) => {
     <div className="recipe-details">
       {recipe ? (
         <>
-          <div>
+          <div className="single-recipe-container">
             <h2>{recipe.title} 
-            <button className="add-favorite" onClick={() => handleAddFavorite(recipe.id)}>Favorite</button></h2>
+            <button className="add-favorite" onClick={() => handleAddFavorite(recipe.id, recipe.title, recipe.image)}>
+            {isFavorite ? "Unfavorite" : "Favorite"}
+            </button></h2>
             <img src={recipe.image} className="recipe-img" />
-            <p>Instructions: {recipe.instructions}</p>
+            <p className="instructions">Instructions: {recipe.instructions}</p>
       
             <div>
               <h3>Ingredients:</h3>

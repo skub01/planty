@@ -9,7 +9,8 @@ export const getSingleRecipe = createAsyncThunk(
         `https://api.spoonacular.com/recipes/${id}/information`,
         {
           params: {
-            apiKey: "bb962a282f1d4567a7587b0faea1ecd6",
+           // apiKey: "bb962a282f1d4567a7587b0faea1ecd6",
+            apiKey: "3e2c0b66e4a54b4aaf9fc39057ed1697"
           },
         }
       );

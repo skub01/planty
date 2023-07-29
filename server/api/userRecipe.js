@@ -38,9 +38,10 @@ router.get("/:userId", async (req, res, next) => {
   });
 
 //deletes favorite
-router.delete("/:userId/removeFavorite", async (req, res, next) => {
+router.delete("/:userId/removeFavorite/:recipeId", async (req, res, next) => {
   try {
     const { userId, recipeId } = req.params;
+    console.log('params!!', req.params)
     await UserRecipe.destroy({ where: { userId, recipeId } });
     res.sendStatus(204);
     } catch (error) {
