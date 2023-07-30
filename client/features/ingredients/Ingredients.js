@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ingredientCategories } from './IngredientList'
 import { getIngredientRecipes } from '../../store/allRecipesSlice';
-import { useNavigate } from 'react-router-dom'; 
+import { redirect, useNavigate } from 'react-router-dom'; 
 import Recommended from '../Recipes/Recommended';
+import { resetRecipes } from '../../store/allRecipesSlice';
 
 
 const Ingredients = (props) => {
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.auth.me.username);
   const navigate = useNavigate();
-  const allIngredientsRef = useRef(null);
-  const dietaryRestrictionsRef = useRef(null);
 
   const initialCheckboxes = ingredientCategories.reduce((acc, { ingredients }) => {
     const ingredientsNames = ingredients.map((ingredient) => ingredient.name);
@@ -22,11 +20,14 @@ const Ingredients = (props) => {
   }, {});
 
   const [selectedCourse, setSelectedCourse] = useState("main course"); 
+  const [dietaryRestrictions, setDietaryRestrictions] = useState(""); 
   const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
   const recipes = useSelector((state) => state.recipes.recipes);
 
   const handleCourseChange = (event) => {
     setSelectedCourse(event.target.value);
+    const element = document.getElementById("dietaryRestrictions");
+    element.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   const handleCheckboxChange = (event) => {
@@ -41,23 +42,25 @@ const Ingredients = (props) => {
       .join(",");
 
     dispatch(getIngredientRecipes(selectedIngredients));
-    dietaryRestrictionsRef.current.scrollIntoView({ behavior: "smooth" });
+    navigate('/recommended')
   };
 
   const handleDietaryRestrictionChange = (event) => {
-    allIngredientsRef.current.scrollIntoView({ behavior: "smooth" });
+    setDietaryRestrictions(event.target.value);
+    const element = document.getElementById("section-container3");
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  useEffect(() => {
+ useEffect(() => {
     if (recipes.length > 0) {
       navigate('/recommended');
     }
-  }, [recipes, navigate]);
+  }, [recipes, navigate]); 
 
   return (
     <div className="ingredients-container">
-    
-        <h1>What kind of recipe are you looking for?</h1>
+    <div className="section-container" data-aos="zoom-in">
+        <h1 id="mealtype">What kind of recipe are you looking for?</h1>
         <div id="mealtype">
         <label>
         <input
@@ -123,9 +126,19 @@ const Ingredients = (props) => {
         Salad
       </label>
       </div>
-   
-      <h1>Any dietary restrictions?</h1>
+      </div>
+      <div className="section-container" data-aos="zoom-in">
+      <h1 id="dietaryRestrictions">Any dietary restrictions?</h1>
       <div id="dietaryRestrictions">
+      <label>
+        <input
+          type="radio"
+          name="dietaryRestriction"
+          value=""
+          onChange={handleDietaryRestrictionChange}
+        />
+        None
+      </label>
       <label>
         <input
           type="radio"
@@ -172,12 +185,13 @@ const Ingredients = (props) => {
         Soy
       </label>
 </div>
-
-        <h1>What's in your kitchen?</h1>
+</div>
+<div id="section-container3" className="section-container" data-aos="zoom-in">
+        <h1 id="allIngredients">What ingredients are we working with?</h1>
         <div id="allIngredients">
         {ingredientCategories.map(({ category, ingredients }) => (
         <div key={category}>
-          <h2>{category}</h2>
+          <h2 className="ingredient-category">{category}</h2>
           {ingredients.map((ingredient, index) => (
             <label key={index}>
               <input
@@ -192,9 +206,12 @@ const Ingredients = (props) => {
         </div>
       ))}
       </div>
-      <button onClick={handleFindRecipes}>Find recipes</button>
-      {recipes.length > 0 && <Recommended recipes={recipes} />}
+      </div>
+      <p className='find-container'>
+      <button className="find-recipes" onClick={handleFindRecipes}>Find recipes</button>
+      {recipes.length > 0 && <Recommended recipes={recipes} />}</p>
   </div>
+
 );
 };
 

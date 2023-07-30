@@ -55,10 +55,13 @@ const SingleRecipe = (props) => {
       {recipe ? (
         <>
           <div className="single-recipe-container">
-            <h2>{recipe.title} 
-            <button className="add-favorite" onClick={() => handleAddFavorite(recipe.id, recipe.title, recipe.image)}>
-            {isFavorite ? "Unfavorite" : "Favorite"}
-            </button></h2>
+          <div className="recipe-header-container">
+            <h2>{recipe.title} </h2>
+            <i
+  className={`favorite-star ${isFavorite ? "fas" : "far"} fa-star`}
+  onClick={() => handleAddFavorite(recipe.id)}
+/>
+            </div>
             <img src={recipe.image} className="recipe-img" />
             <p className="instructions">Instructions: {recipe.instructions}</p>
       

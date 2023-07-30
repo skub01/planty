@@ -4,13 +4,14 @@ import axios from "axios";
 const apiKey = "3e2c0b66e4a54b4aaf9fc39057ed1697";
 
 
-export const getAllRecipes = createAsyncThunk("getAllRecipes", async ({ intolerances, type }) => {
+export const getAllRecipes = createAsyncThunk("getAllRecipes", async ({ intolerances, type, page }) => {
   try {
     const params = {
       apiKey: apiKey,
       diet: "vegan",
-      number: 3,
+      number: 8,
       sort: "random",
+      offset: (page - 1) * 8, 
     };
     if (intolerances) {
       params.intolerances = intolerances;
@@ -34,18 +35,18 @@ export const getIngredientRecipes = createAsyncThunk(
     try {
       console.log("ingredients!!!", selectedIngredients)
       const response = await axios.get(
-        "https://api.spoonacular.com/recipes/findByIngredients",
+        "https://api.spoonacular.com/recipes/complexSearch",
         {
           params: {
             apiKey: apiKey,
-            ingredients: selectedIngredients,
+            includeIngredients: selectedIngredients,
             diet: "vegan",
-            number: 3,
+            number: 6,
           },
         }
       );
       console.log("response!!!", response.data)
-      return response.data;
+      return response.data.results;
     } catch (err) {
       console.log(err);
       throw err;
@@ -59,7 +60,11 @@ const allRecipesSlice = createSlice({
   initialState: {
     recipes: [],
   },
-  reducers: {},
+  reducers: {
+    resetRecipes: (state) => {
+      state.recipes = [];
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getAllRecipes.fulfilled, (state, { payload }) => {
       state.recipes = payload;
@@ -71,6 +76,7 @@ const allRecipesSlice = createSlice({
   },
 });
 
+export const { resetRecipes } = allRecipesSlice.actions;
 export const selectRecipes = (state) => {
   return state.recipes.recipes;
 };

@@ -12,8 +12,8 @@ const AllRecipes = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllRecipes({ intolerances: intolerances, type: mealType }));
-  }, [dispatch]);
+    dispatch(getAllRecipes({ intolerances: intolerances, type: mealType, page }));
+  }, [dispatch, page]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +27,8 @@ const AllRecipes = (props) => {
   const recipes = useSelector(selectRecipes);
 
   const handleFilter = () => {
-    dispatch(getAllRecipes({ intolerances: intolerances, type: mealType }));
+    setPage(1);
+    dispatch(getAllRecipes({ intolerances: intolerances, type: mealType, page: 1 }));
   };
 
   return (

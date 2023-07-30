@@ -10,7 +10,7 @@ const BackButton = () => {
   };
 
   return (
-    <button onClick={handleBack}>Back to All Recipes</button>
+    <button id="back-button" onClick={handleBack}>Back</button>
   );
 };
 

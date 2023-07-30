@@ -31,7 +31,7 @@ const Favorites = (props) => {
       <h3>Welcome to your favorites page, {username}!</h3>
       {favoriteRecipes.length? (
         <>
-      <h4>Your Favorite Recipes:</h4>
+      <h4>Saved Recipes:</h4>
       <ul className="favorite-list">
         {favoriteRecipes.map((favorite) => (
          <li key={favorite.id}>
