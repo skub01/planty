@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getFavoriteRecipe } from '../../store/favoritesSlice';
+import { getFavoriteRecipes } from '../../store/favoritesSlice';
 import { getUserRecipes } from "../../store/userRecipesSlice";
 
 const Favorites = (props) => {
@@ -12,18 +12,14 @@ const Favorites = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      const fetchFavorites = async () => {
-        const recipeIds = favorites.map((favorite) => favorite.recipeId);
-        const newRecipeIds = recipeIds.filter(
-          (id) => !favoriteRecipes.some((recipe) => recipe.id === id)
-        );
+    const newRecipeIds = favorites
+    .filter((favorite) => !favoriteRecipes.some((recipe) => recipe.id === favorite.recipeId))
+    .map((favorite) => favorite.recipeId);
 
-        newRecipeIds.forEach((id) => {
-          dispatch(getFavoriteRecipe(id));
-        });
-      };
-      fetchFavorites();
-  }, [favorites, favoriteRecipes, dispatch, userId]);
+  if (newRecipeIds.length > 0) {
+    dispatch(getFavoriteRecipes(newRecipeIds));
+  }
+}, [favorites, favoriteRecipes, dispatch, userId]);
 
   return (
     

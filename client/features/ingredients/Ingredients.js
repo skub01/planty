@@ -41,7 +41,7 @@ const Ingredients = (props) => {
       .map(([name]) => name)
       .join(",");
 
-    dispatch(getIngredientRecipes(selectedIngredients));
+    dispatch(getIngredientRecipes({selectedIngredients, type: selectedCourse, intolerances: dietaryRestrictions }));
     navigate('/recommended')
   };
 
@@ -128,7 +128,7 @@ const Ingredients = (props) => {
       </div>
       </div>
       <div className="section-container" data-aos="zoom-in">
-      <h1 id="dietaryRestrictions">Any dietary restrictions?</h1>
+      <h1 id="dietaryRestrictions">Any dietary restrictions or food intolerances?</h1>
       <div id="dietaryRestrictions">
       <label>
         <input
@@ -207,9 +207,9 @@ const Ingredients = (props) => {
       ))}
       </div>
       </div>
-      <p className='find-container'>
+      <div className='find-container'>
       <button className="find-recipes" onClick={handleFindRecipes}>Find recipes</button>
-      {recipes.length > 0 && <Recommended recipes={recipes} />}</p>
+      {recipes.length > 0 && <Recommended recipes={recipes} />}</div>
   </div>
 
 );

@@ -34,7 +34,6 @@ const AllRecipes = (props) => {
   return (
     <>
     <div className="filter-container">
-        <h2>Filter Options:</h2>
         <div>
           <label>Food Intolerance:</label>
           <select

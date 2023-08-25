@@ -1,24 +1,26 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-//const apiKey = "bb962a282f1d4567a7587b0faea1ecd6";
-const apiKey = "3e2c0b66e4a54b4aaf9fc39057ed1697";
+const apiKey = "bb962a282f1d4567a7587b0faea1ecd6";
+//const apiKey = "3e2c0b66e4a54b4aaf9fc39057ed1697";
+//const apiKey = "97f28d44e25d49a687b086c42bae4aeb"
 
-export const getFavoriteRecipe = createAsyncThunk(
-  "favoriteRecipes/getFavoriteRecipe",
-  async (id, { rejectWithValue }) => {
+export const getFavoriteRecipes = createAsyncThunk(
+  "favoriteRecipes/getFavoriteRecipes",
+  async (recipeIds) => {
     try {
       const response = await axios.get(
-        `https://api.spoonacular.com/recipes/${id}/information`,
+        `https://api.spoonacular.com/recipes/informationBulk`,
         {
           params: {
             apiKey: apiKey,
+            ids: recipeIds.join(","),
           },
         }
       );
       return response.data;
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return console.log(err.response.data);
     }
   }
 );
@@ -30,8 +32,8 @@ const favoritesSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getFavoriteRecipe.fulfilled, (state, { payload }) => {
-      state.favoriteRecipes.push(payload);
+    builder.addCase(getFavoriteRecipes.fulfilled, (state, { payload }) => {
+      state.favoriteRecipes.push(...payload);
     });
   },
 });

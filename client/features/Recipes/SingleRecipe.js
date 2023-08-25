@@ -41,8 +41,8 @@ const SingleRecipe = (props) => {
         text: "Please log in or register to save recipes to your favorites!",
         duration: 2000,
         close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "center", // `left`, `center` or `right`
+        gravity: "top", 
+        position: "center",
         style: {
           background: "linear-gradient(to right, #00b09b, #96c93d)",
         },
