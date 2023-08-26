@@ -33,33 +33,49 @@ export const getAllRecipes = createAsyncThunk("getAllRecipes", async ({ intolera
 export const getIngredientRecipes = createAsyncThunk(
   "getIngredientRecipes",
   async ({ selectedIngredients, intolerances, type }) => {
-    try {
-      const params = {
-        apiKey: apiKey,
-        includeIngredients: selectedIngredients,
-        diet: "vegan",
-        number: 4,
-        sort: "random",
-      };
-      if (intolerances) {
-        params.intolerances = intolerances;
+     const selectedIngredientsArray = selectedIngredients.split(',');
+    const maxRetries = selectedIngredientsArray.length; 
+    let retries = 0;
+    let currentIngredients = [...selectedIngredientsArray]; 
+
+    while (retries <= maxRetries) {
+      try {
+        const params = {
+          apiKey: apiKey,
+          includeIngredients: currentIngredients.join(','),
+          diet: "vegan",
+          number: 4,
+          sort: "random",
+        };
+        if (intolerances) {
+          params.intolerances = intolerances;
+        }
+        if (type) {
+          params.type = type;
+        }
+        console.log("params!!!", params)
+        const response = await axios.get(
+          "https://api.spoonacular.com/recipes/complexSearch",
+          {
+            params: params
+          }
+        );
+
+        if (response.data.results.length > 0) {
+          return response.data.results; 
+        } else {
+          currentIngredients.pop();
+          retries++;
+        }
+      } catch (err) {
+        console.log(err);
+        throw err;
       }
-      if (type) {
-        params.type = type;
-      }
-      console.log("params!!!", params)
-      const response = await axios.get(
-        "https://api.spoonacular.com/recipes/complexSearch",
-        {
-          params: params
-          });
-      return response.data.results;
-    } catch (err) {
-      console.log(err);
-      throw err;
     }
+    return [];
   }
 );
+
 
 
 const allRecipesSlice = createSlice({

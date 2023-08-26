@@ -19,7 +19,7 @@ const Ingredients = (props) => {
     }, acc);
   }, {});
 
-  const [selectedCourse, setSelectedCourse] = useState("main course"); 
+  const [selectedCourse, setSelectedCourse] = useState(""); 
   const [dietaryRestrictions, setDietaryRestrictions] = useState(""); 
   const [checkboxes, setCheckboxes] = useState(initialCheckboxes);
   const recipes = useSelector((state) => state.recipes.recipes);
@@ -62,6 +62,15 @@ const Ingredients = (props) => {
     <div className="section-container" data-aos="zoom-in">
         <h1 id="mealtype">What kind of recipe are you looking for?</h1>
         <div id="mealtype">
+        <label>
+        <input
+          type="radio"
+          name="recipeType"
+          value=""
+          onChange={handleCourseChange}
+        />
+        Any
+      </label>
         <label>
         <input
           type="radio"
@@ -187,7 +196,7 @@ const Ingredients = (props) => {
 </div>
 </div>
 <div id="section-container3" className="section-container" data-aos="zoom-in">
-        <h1 id="allIngredients">What ingredients are we working with?</h1>
+        <h1 id="allIngredients">Choose a few main ingredients</h1>
         <div id="allIngredients">
         {ingredientCategories.map(({ category, ingredients }) => (
         <div key={category}>

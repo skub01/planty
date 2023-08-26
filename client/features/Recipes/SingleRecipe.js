@@ -50,6 +50,11 @@ const SingleRecipe = (props) => {
     }
   };
 
+  const sanitizeHTML = (html) => {
+    const strippedHTML = html.replace(/<[^>]+>/g, ''); // Remove HTML tags
+    return strippedHTML;
+  };
+
   return (
     <div className="recipe-details">
       {recipe ? (
@@ -63,7 +68,10 @@ const SingleRecipe = (props) => {
 />
             </div>
             <img src={recipe.image} className="recipe-img" />
-            <p className="instructions">Instructions: {recipe.instructions}</p>
+            <div className="instructions">
+            <h3>Instructions:</h3>
+            {sanitizeHTML(recipe.instructions)}
+          </div>
       
             <div>
               <h3>Ingredients:</h3>
