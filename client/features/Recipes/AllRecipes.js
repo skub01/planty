@@ -70,7 +70,7 @@ const AllRecipes = (props) => {
         </div>
         <button onClick={handleFilter}>Filter</button>
       </div>
-
+      <div className="recipes-and-buttons-container">
       <div className="all-recipes-container">
         {recipes ? (
           recipes.map((recipe) => (
@@ -89,7 +89,7 @@ const AllRecipes = (props) => {
           <button onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 1))}>Previous</button>
           <button onClick={() => setPage((prevPage) => prevPage + 1)}>Next</button>
         </div>
-    
+        </div>
     </>
   );
 }
