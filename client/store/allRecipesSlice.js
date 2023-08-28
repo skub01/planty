@@ -24,7 +24,10 @@ export const getAllRecipes = createAsyncThunk("getAllRecipes", async ({ intolera
     const response = await axios.get("https://api.spoonacular.com/recipes/complexSearch", {
       params: params,
     });
-    return response.data.results;
+    console.log('!!!!!!', response)
+    return {   results: response.data.results,
+      total: response.data.totalResults 
+      };
   } catch (err) {
     console.log(err);
   }
@@ -82,6 +85,7 @@ const allRecipesSlice = createSlice({
   name: "recipes",
   initialState: {
     recipes: [],
+    totalResults: 0
   },
   reducers: {
     resetRecipes: (state) => {
@@ -90,7 +94,8 @@ const allRecipesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getAllRecipes.fulfilled, (state, { payload }) => {
-      state.recipes = payload;
+      state.recipes = payload.results;
+      state.totalResults = payload.total
     });
     builder.addCase(getIngredientRecipes.fulfilled, (state, { payload }) => {
       console.log('payload here:', payload)

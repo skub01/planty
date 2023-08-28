@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllRecipes, selectRecipes } from "../../store/allRecipesSlice";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import PrevNext from "./PrevNext";
 
 const AllRecipes = (props) => {
   const username = useSelector((state) => state.auth.me.username);
   const [page, setPage] = useState(1);
   const [intolerances, setIntolerances] = useState(null);
   const [mealType, setMealType] = useState(null);
+  const totalEvents = useSelector((state) => state.recipes.totalResults);
+  const totalPages = Math.ceil(totalEvents / 8);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,6 +33,29 @@ const AllRecipes = (props) => {
     setPage(1);
     dispatch(getAllRecipes({ intolerances: intolerances, type: mealType, page: 1 }));
   };
+
+    // Handle previous page navigation
+    const handlePreviousPage = () => {
+      const newPage = Math.max(page - 1, 1);
+      setPage(newPage);
+      navigate(`/?filter=${filter}&page=${newPage}`);
+      setScrollToEvents(true);
+    };
+  
+    // Handle next page navigation
+    const handleNextPage = () => {
+      const newPage = page + 1;
+      setPage(newPage);
+      navigate(`/?filter=${filter}&page=${newPage}`);
+      setScrollToEvents(true);
+    };
+  
+    // Handle page click
+    const handlePageClick = (pageNumber) => {
+      setPage(pageNumber);
+      navigate(`/?filter=${filter}&page=${pageNumber}`);
+      setScrollToEvents(true);
+    };
 
   return (
     <>
@@ -85,10 +111,13 @@ const AllRecipes = (props) => {
           <p>Loading recipes...</p>
         )}
           </div>
-        <div className="pageButtons">
-          <button onClick={() => setPage((prevPage) => Math.max(prevPage - 1, 1))}>Previous</button>
-          <button onClick={() => setPage((prevPage) => prevPage + 1)}>Next</button>
-        </div>
+    <PrevNext
+       currentPage={page}
+       totalPages={totalPages}
+       totalEvents={totalEvents}
+       onPageClick={handlePageClick}
+       onNextClick={handleNextPage}
+       onPreviousClick={handlePreviousPage} />
         </div>
     </>
   );
