@@ -32,15 +32,7 @@ const PrevNext = ({
     // Create page buttons within the visible range
     for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
       pageButtons.push(
-        <Button
-          key={pageNumber}
-          value={pageNumber}
-          variant="outline"
-          style={{
-            color: "white",
-            border: "none",
-            fontSize: "17px",
-          }}
+        <button 
           onClick={() => onPageClick(pageNumber)}
           className={currentPage === pageNumber ? "active" : ""}
         >
@@ -49,7 +41,7 @@ const PrevNext = ({
           ) : (
             pageNumber
           )}
-        </Button>
+        </button>
       );
     }
     return pageButtons;

@@ -11,7 +11,6 @@ export const getAllRecipes = createAsyncThunk("getAllRecipes", async ({ intolera
       apiKey: apiKey,
       diet: "vegan",
       number: 8,
-      sort: "random",
       offset: (page - 1) * 8, 
     };
     if (intolerances) {

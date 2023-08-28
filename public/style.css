@@ -75,7 +75,7 @@ font-style: italic;
   font-size: 45px;
   text-align: center;
   color: rgb(245, 230, 216); 
-  padding: 10px;
+  padding: 100px;
   margin-bottom: 700px;
   margin-left: 50px;
   margin-right: 50px;
@@ -85,9 +85,23 @@ font-style: italic;
 
 .description p {
   margin: 0;
-  padding: 50px;
+  padding: 10px;
 }
 
+.pagination-info {
+  color: white;
+  font-size: 20px;
+font-style: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pagination-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
 @keyframes pulse {
   0% { transform: scale(1); }
