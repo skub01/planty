@@ -7,6 +7,9 @@ import BackButton from "./BackButton";
 import { addFavorite, getUserRecipes, removeFavorite } from "../../store/userRecipesSlice";
 import Toastify from 'toastify-js'
 import { getFavoriteRecipe } from "../../store/favoritesSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as outlineStar } from "@fortawesome/free-regular-svg-icons";
 
 const SingleRecipe = (props) => {
   const userId = useSelector((state) => state.auth.me.id);
@@ -24,17 +27,19 @@ const SingleRecipe = (props) => {
   console.log('recipeeeee', recipe)
   const isFavorite = favorites.some((fav) => fav.recipeId === recipe?.id);
 
-  const handleAddFavorite = async (recipeId, title, image) => {
+  const handleAddFavorite = (recipeId, title, image) => {
     if (userId) {
-      try {
-        if (isFavorite) {
-    dispatch(removeFavorite({ userId, recipeId: id }));
-        } else {
-      dispatch(addFavorite({ userId, recipeId, title, image }));
-        }
-        dispatch(getUserRecipes(userId)); 
-      } catch (error) {
-        console.log(error);
+      const recipeInFavorites = favorites.find((fav) => fav.recipeId === recipeId);
+      if (recipeInFavorites) {
+        dispatch(removeFavorite({ userId, recipeId: id })).then(() => {
+          dispatch(getUserRecipes(userId));
+          toast.success("Recipe removed from favorites!");
+        });
+      } else {
+        dispatch(addFavorite({ userId, recipeId, title, image })).then(() => {
+          dispatch(getUserRecipes(userId));
+          toast.success("Recipe added to favorites!");
+        });
       }
     } else {
       Toastify({
@@ -62,10 +67,25 @@ const SingleRecipe = (props) => {
           <div className="single-recipe-container">
           <div className="recipe-header-container">
             <h2>{recipe.title} </h2>
-            <i
-  className={`favorite-star ${isFavorite ? "fas" : "far"} fa-star`}
-  onClick={() => handleAddFavorite(recipe.id)}
-/>
+            <button
+        variant="outline"
+        style={{
+          border: "none",
+          fontSize: "32px",
+        }}
+        onClick={() => handleAddFavorite(recipe.id, recipe.title, recipe.image)}
+      >
+        <FontAwesomeIcon
+          icon={
+            favorites.some((fav) => fav.recipeId === recipe.id)
+              ? solidStar
+              : outlineStar
+          }
+          className={`star-icon ${
+            favorites.some((fav) => fav.recipeId === recipe.id) ? "active" : ""
+          }`}
+        />
+      </button>
             </div>
             <img src={recipe.image} className="recipe-img" />
             <div className="instructions">

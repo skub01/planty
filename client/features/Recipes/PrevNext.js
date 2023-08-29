@@ -1,5 +1,5 @@
 import React from "react";
-import {Button } from "react-bootstrap";
+
 
 
 const PrevNext = ({
@@ -59,23 +59,23 @@ const PrevNext = ({
             Viewing results {startResult}-{endResult} of {totalEvents}
           </p>
           <div className="pagination-buttons">
-            <Button
+            <button
               onClick={onPreviousClick}
               disabled={currentPage === 1}
               variant="outline-light"
               style={{}}
             >
               Previous
-            </Button>
+            </button>
             {renderPageButtons()}
-            <Button
+            <button
               onClick={onNextClick}
               disabled={currentPage === totalPages || totalPages === 0}
               variant="outline-light"
               style={{}}
             >
               Next
-            </Button>
+            </button>
           </div>
         </>
       ) : null}
