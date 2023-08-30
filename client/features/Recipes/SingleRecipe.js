@@ -28,10 +28,10 @@ const SingleRecipe = (props) => {
       const recipeInFavorites = favorites.find((fav) => fav.recipeId === recipeId);
       if (recipeInFavorites) {
         dispatch(removeFavorite({ userId, recipeId: id }))
+        .then(() => dispatch(getUserRecipes(userId)))
         }
          else {
           if (recipe) {
-            console.log('this is the recipe', recipe)
         dispatch(addFavorite({ userId, recipeId, title: recipe.title, image: recipe.image }))}
         };
       }
@@ -47,7 +47,6 @@ const SingleRecipe = (props) => {
         },
       }).showToast();
     }
-    dispatch(getUserRecipes(userId))
   };
 
   const sanitizeHTML = (html) => {

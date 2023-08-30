@@ -48,7 +48,7 @@ router.delete("/:userId/removeFavorite/:recipeId", async (req, res, next) => {
     const { userId, recipeId } = req.params;
     console.log('params!!', req.params)
     await UserRecipe.destroy({ where: { userId, recipeId } });
-    res.sendStatus(204);
+    res.json({ message: "Favorite removed successfully", recipeId });
     } catch (error) {
       next(error);
     }
