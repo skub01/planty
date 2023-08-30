@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 const PrevNext = ({
   currentPage,
   totalPages,
@@ -32,7 +30,7 @@ const PrevNext = ({
     // Create page buttons within the visible range
     for (let pageNumber = startPage; pageNumber <= endPage; pageNumber++) {
       pageButtons.push(
-        <button 
+        <button
           onClick={() => onPageClick(pageNumber)}
           className={currentPage === pageNumber ? "active" : ""}
         >

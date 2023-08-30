@@ -34,7 +34,7 @@ export const removeFavorite = createAsyncThunk(
       const { data } = await axios.delete(
         `/api/userrecipes/${userId}/removeFavorite/${recipeId}`
       );
-      console.log('daaaataaaaa', data)
+      console.log("daaaataaaaa", data);
       return data;
     } catch (err) {
       console.log(err);
@@ -57,7 +57,7 @@ const userRecipesSlice = createSlice({
       .addCase(addFavorite.fulfilled, (state, { payload }) => {
         state.userRecipes.push(payload);
       })
-      .addCase(removeFavorite.fulfilled, (state, {payload}) => {
+      .addCase(removeFavorite.fulfilled, (state, { payload }) => {
         state.userRecipes = state.userRecipes.filter(
           (recipe) => recipe.recipeId !== payload.recipeId
         );

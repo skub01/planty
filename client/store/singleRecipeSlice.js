@@ -9,9 +9,9 @@ export const getSingleRecipe = createAsyncThunk(
         `https://api.spoonacular.com/recipes/${id}/information`,
         {
           params: {
-        // apiKey: "bb962a282f1d4567a7587b0faea1ecd6",
-           apiKey: "3e2c0b66e4a54b4aaf9fc39057ed1697"
-         // apiKey: "97f28d44e25d49a687b086c42bae4aeb"
+            // apiKey: "bb962a282f1d4567a7587b0faea1ecd6",
+            apiKey: "3e2c0b66e4a54b4aaf9fc39057ed1697",
+            // apiKey: "97f28d44e25d49a687b086c42bae4aeb"
           },
         }
       );
@@ -35,7 +35,7 @@ const singleRecipeSlice = createSlice({
       })
       .addCase(getSingleRecipe.rejected, (state) => {
         return initialState;
-      })
+      });
   },
 });
 
