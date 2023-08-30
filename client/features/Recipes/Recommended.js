@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { resetRecipes } from '../../store/allRecipesSlice';
@@ -8,6 +8,10 @@ const Recommended = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleReset = () => {
     dispatch(resetRecipes());
     navigate('/ingredients')
@@ -15,6 +19,7 @@ const Recommended = () => {
 
   return (
     <>
+    <div className="recommended-container">
         {recipes ? (
           <>
                 <div className="all-recipes-container">
@@ -28,13 +33,13 @@ const Recommended = () => {
             ))}
                </div>
      
-            <button className="get-started-button" onClick={handleReset}>Back to Search</button>
-         
+            <button className="back-to-search" onClick={handleReset}>Back to Search</button>
+       
           </>
         ) : (
           <p>No recipes found! Try a different search.</p>
         )}
-   
+   </div>
     </>
   );
         } 

@@ -11,6 +11,10 @@ const Ingredients = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const initialCheckboxes = ingredientCategories.reduce((acc, { ingredients }) => {
     const ingredientsNames = ingredients.map((ingredient) => ingredient.name);
     return ingredientsNames.reduce((checkboxes, name) => {
