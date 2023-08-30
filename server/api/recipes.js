@@ -16,12 +16,12 @@ router.get("/", async (req, res, next) => {
 });
 
 router.get("/:id", async (req, res, next) => {
-    try {
-      const recipe = await Recipe.findByPk(req.params.id, {
-        include: [Ingredient],
-      });
-      res.json(recipe);
-    } catch (error) {
-      next(error);
-    }
-  });
+  try {
+    const recipe = await Recipe.findByPk(req.params.id, {
+      include: [Ingredient],
+    });
+    res.json(recipe);
+  } catch (error) {
+    next(error);
+  }
+});

@@ -22,7 +22,7 @@ const AppRoutes = () => {
 
   useEffect(() => {
     if (userId) {
-    dispatch(getUserRecipes(userId));
+      dispatch(getUserRecipes(userId));
     }
   }, [userId]);
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Router, Link, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import { resetRecipes } from "../../store/allRecipesSlice";
 

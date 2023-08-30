@@ -26,7 +26,9 @@ const Favorites = (props) => {
             {favorites.map((favorite) => (
               <li key={favorite.id}>
                 <img src={favorite.image} className="favorite-recipe-img" />
-                <Link to={`/allrecipes/${favorite.recipeId}`}>{favorite.title}</Link>
+                <Link to={`/allrecipes/${favorite.recipeId}`}>
+                  {favorite.title}
+                </Link>
               </li>
             ))}
           </ul>

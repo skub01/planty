@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // this returns all favorites for a certain user (just the recipe ID numbers)
@@ -34,7 +34,6 @@ export const removeFavorite = createAsyncThunk(
       const { data } = await axios.delete(
         `/api/userrecipes/${userId}/removeFavorite/${recipeId}`
       );
-      console.log("daaaataaaaa", data);
       return data;
     } catch (err) {
       console.log(err);
