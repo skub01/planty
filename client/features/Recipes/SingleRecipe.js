@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getSingleRecipe } from "../../store/singleRecipeSlice";
 import BackButton from "./BackButton";
 import { addFavorite, getUserRecipes, removeFavorite } from "../../store/userRecipesSlice";
@@ -14,6 +14,10 @@ const SingleRecipe = (props) => {
   const favorites = useSelector((state) => state.userRecipes.userRecipes);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const filter = queryParams.get("filter");
+  const page = queryParams.get("page");
 
   useEffect(() => {
     if (id) {
@@ -50,7 +54,7 @@ const SingleRecipe = (props) => {
   };
 
   const sanitizeHTML = (html) => {
-    const strippedHTML = html.replace(/<[^>]+>/g, ''); // Remove HTML tags
+    const strippedHTML = html?.replace(/<[^>]+>/g, ''); // Remove HTML tags
     return strippedHTML;
   };
 
@@ -113,7 +117,7 @@ const SingleRecipe = (props) => {
                 ))}
               </ul>
             </div> 
-              <BackButton />
+              <BackButton page={page} filter={filter}/>
           </div>
         </>
       ) : (

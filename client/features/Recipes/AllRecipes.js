@@ -1,18 +1,24 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllRecipes, selectRecipes } from "../../store/allRecipesSlice";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import PrevNext from "./PrevNext";
 
 const AllRecipes = (props) => {
   const username = useSelector((state) => state.auth.me.username);
-  const [page, setPage] = useState(1);
   const [intolerances, setIntolerances] = useState(null);
   const [mealType, setMealType] = useState(null);
   const totalEvents = useSelector((state) => state.recipes.totalResults);
   const totalPages = Math.ceil(totalEvents / 8);
   const dispatch = useDispatch();
+    const location = useLocation();
+    const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
+  const filterParam = queryParams.get("filter");
+  const pageParam = queryParams.get("page");
+  const [filter, setFilter] = useState(filterParam || "");
+  const [page, setPage] = useState(pageParam ? parseInt(pageParam) : 1);
 
   useEffect(() => {
     dispatch(getAllRecipes({ intolerances: intolerances, type: mealType, page }));
@@ -29,7 +35,8 @@ const AllRecipes = (props) => {
 
   const recipes = useSelector(selectRecipes);
 
-  const handleFilter = () => {
+  const handleFilter = (newFilter) => {
+    setFilter(newFilter);
     setPage(1);
     dispatch(getAllRecipes({ intolerances: intolerances, type: mealType, page: 1 }));
   };
@@ -38,23 +45,20 @@ const AllRecipes = (props) => {
     const handlePreviousPage = () => {
       const newPage = Math.max(page - 1, 1);
       setPage(newPage);
-      navigate(`/?filter=${filter}&page=${newPage}`);
-      setScrollToEvents(true);
+      navigate(`/allrecipes/?filter=${filter}&page=${newPage}`);
     };
   
     // Handle next page navigation
     const handleNextPage = () => {
       const newPage = page + 1;
       setPage(newPage);
-      navigate(`/?filter=${filter}&page=${newPage}`);
-      setScrollToEvents(true);
+      navigate(`/allrecipes/?filter=${filter}&page=${newPage}`);
     };
   
     // Handle page click
     const handlePageClick = (pageNumber) => {
       setPage(pageNumber);
-      navigate(`/?filter=${filter}&page=${pageNumber}`);
-      setScrollToEvents(true);
+      navigate(`/allrecipes/?filter=${filter}&page=${pageNumber}`);
     };
 
   return (
