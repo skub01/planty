@@ -54,6 +54,22 @@ const SingleRecipe = (props) => {
     return strippedHTML;
   };
 
+  //The API sometimes mistakenly lists duplicate/triplicate ingredients. 
+  // This function makes sure they only get listed once.
+  const filterUniqueIngredients = (ingredients) => {
+    const uniqueIngredients = [];
+    const seenIngredients = new Set();
+
+    ingredients.forEach((ingredient) => {
+      if (!seenIngredients.has(ingredient.original)) {
+        uniqueIngredients.push(ingredient);
+        seenIngredients.add(ingredient.original);
+      }
+    });
+
+    return uniqueIngredients;
+  };
+
   return (
     <div className="recipe-details">
       {recipe ? (
@@ -90,7 +106,7 @@ const SingleRecipe = (props) => {
             <div>
               <h3>Ingredients:</h3>
               <ul>
-                {recipe.extendedIngredients.map((ingredient) => (
+              {filterUniqueIngredients(recipe.extendedIngredients).map((ingredient) => (
                   <li key={ingredient.id}>
                     {ingredient.original}
                   </li>
