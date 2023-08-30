@@ -37,7 +37,9 @@ const AllRecipes = (props) => {
 
   const handleFilter = (newFilter) => {
     setFilter(newFilter);
+    console.log(newFilter)
     setPage(1);
+    navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=1`);
     dispatch(getAllRecipes({ intolerances: intolerances, type: mealType, page: 1 }));
   };
 
