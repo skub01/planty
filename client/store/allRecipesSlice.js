@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 //const apiKey = "bb962a282f1d4567a7587b0faea1ecd6";
-const apiKey = "3e2c0b66e4a54b4aaf9fc39057ed1697";
-//const apiKey = "97f28d44e25d49a687b086c42bae4aeb"
+//const apiKey = "3e2c0b66e4a54b4aaf9fc39057ed1697";
+const apiKey = "97f28d44e25d49a687b086c42bae4aeb"
 
 
 export const getAllRecipes = createAsyncThunk("getAllRecipes", async ({ intolerances, type, page }) => {

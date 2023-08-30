@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleRecipe } from "../../store/singleRecipeSlice";
 import BackButton from "./BackButton";
 import { addFavorite, getUserRecipes, removeFavorite } from "../../store/userRecipesSlice";
 import Toastify from 'toastify-js'
-import { getFavoriteRecipe } from "../../store/favoritesSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as outlineStar } from "@fortawesome/free-regular-svg-icons";
@@ -24,24 +22,20 @@ const SingleRecipe = (props) => {
   }, [dispatch, id, userId]);
 
   const recipe = useSelector((state) => state.singleRecipe.singleRecipe);
-  console.log('recipeeeee', recipe)
-  const isFavorite = favorites.some((fav) => fav.recipeId === recipe?.id);
 
   const handleAddFavorite = (recipeId, title, image) => {
     if (userId) {
       const recipeInFavorites = favorites.find((fav) => fav.recipeId === recipeId);
       if (recipeInFavorites) {
-        dispatch(removeFavorite({ userId, recipeId: id })).then(() => {
-          dispatch(getUserRecipes(userId));
-          toast.success("Recipe removed from favorites!");
-        });
-      } else {
-        dispatch(addFavorite({ userId, recipeId, title, image })).then(() => {
-          dispatch(getUserRecipes(userId));
-          toast.success("Recipe added to favorites!");
-        });
+        dispatch(removeFavorite({ userId, recipeId: id }))
+        }
+         else {
+          if (recipe) {
+            console.log('this is the recipe', recipe)
+        dispatch(addFavorite({ userId, recipeId, title: recipe.title, image: recipe.image }))}
+        };
       }
-    } else {
+     else {
       Toastify({
         text: "Please log in or register to save recipes to your favorites!",
         duration: 2000,
@@ -53,6 +47,7 @@ const SingleRecipe = (props) => {
         },
       }).showToast();
     }
+    dispatch(getUserRecipes(userId))
   };
 
   const sanitizeHTML = (html) => {

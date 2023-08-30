@@ -29,8 +29,13 @@ router.get("/:userId", async (req, res, next) => {
  router.post("/:userId/addFavorite", async (req, res, next) => {
       try {
         const { userId } = req.params;
-        const { recipeId } = req.body;
-        const favorite = await UserRecipe.create({ userId: userId, recipeId: recipeId})   
+        const { recipeId, title, image } = req.body;
+        const favorite = await UserRecipe.create({ 
+          userId: userId,
+          recipeId: recipeId,
+          title: title, 
+          image: image,
+        })   
       res.send(favorite);
     } catch (error) {
       next(error);

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// this returns all favorites for a certain user
+// this returns all favorites for a certain user (just the recipe ID numbers)
 export const getUserRecipes = createAsyncThunk("getFavs", async (id) => {
   try {
     const { data } = await axios.get(`/api/userrecipes/${id}`);
