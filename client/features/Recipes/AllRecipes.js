@@ -7,14 +7,17 @@ import PrevNext from "./PrevNext";
 
 const AllRecipes = (props) => {
   const username = useSelector((state) => state.auth.me.username);
-  const [intolerances, setIntolerances] = useState(null);
-  const [mealType, setMealType] = useState(null);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const intolerancesParam = queryParams.get("intolerances");
+  const mealParam = queryParams.get("mealType");
+  const [intolerances, setIntolerances] = useState(intolerancesParam || "");
+  const [mealType, setMealType] = useState(mealParam || "");
   const totalEvents = useSelector((state) => state.recipes.totalResults);
   const totalPages = Math.ceil(totalEvents / 8);
   const dispatch = useDispatch();
-    const location = useLocation();
+
     const navigate = useNavigate();
-  const queryParams = new URLSearchParams(location.search);
   const filterParam = queryParams.get("filter");
   const pageParam = queryParams.get("page");
   const [filter, setFilter] = useState(filterParam || "");
