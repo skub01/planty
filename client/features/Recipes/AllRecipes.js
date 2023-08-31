@@ -47,20 +47,20 @@ const AllRecipes = (props) => {
     const handlePreviousPage = () => {
       const newPage = Math.max(page - 1, 1);
       setPage(newPage);
-      navigate(`/allrecipes/?filter=${filter}&page=${newPage}`);
+      navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${newPage}`);
     };
   
     // Handle next page navigation
     const handleNextPage = () => {
       const newPage = page + 1;
       setPage(newPage);
-      navigate(`/allrecipes/?filter=${filter}&page=${newPage}`);
+      navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${newPage}`);
     };
   
     // Handle page click
     const handlePageClick = (pageNumber) => {
       setPage(pageNumber);
-      navigate(`/allrecipes/?filter=${filter}&page=${pageNumber}`);
+      navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${pageNumber}`);
     };
 
   return (
