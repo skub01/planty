@@ -6,7 +6,6 @@ import { useState } from "react";
 import PrevNext from "./PrevNext";
 
 const AllRecipes = (props) => {
-  const username = useSelector((state) => state.auth.me.username);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const intolerancesParam = queryParams.get("intolerances");
@@ -16,11 +15,8 @@ const AllRecipes = (props) => {
   const totalEvents = useSelector((state) => state.recipes.totalResults);
   const totalPages = Math.ceil(totalEvents / 8);
   const dispatch = useDispatch();
-
-    const navigate = useNavigate();
-  const filterParam = queryParams.get("filter");
+  const navigate = useNavigate();
   const pageParam = queryParams.get("page");
-  const [filter, setFilter] = useState(filterParam || "");
   const [page, setPage] = useState(pageParam ? parseInt(pageParam) : 1);
 
   useEffect(() => {
@@ -39,7 +35,6 @@ const AllRecipes = (props) => {
   const recipes = useSelector(selectRecipes);
 
   const handleFilter = (newFilter) => {
-    setFilter(newFilter);
     console.log(newFilter)
     setPage(1);
     navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=1`);
