@@ -20,12 +20,15 @@ const AllRecipes = (props) => {
   const [page, setPage] = useState(pageParam ? parseInt(pageParam) : 1);
 
   useEffect(() => {
-    dispatch(getAllRecipes({ intolerances: intolerances, type: mealType, page }));
+    dispatch(
+      getAllRecipes({ intolerances: intolerances, type: mealType, page })
+    );
   }, [dispatch, page]);
 
   useEffect(() => {
     const handleScroll = () => {
-      sessionStorage.setItem("scrollPosition", window.scrollY);};
+      sessionStorage.setItem("scrollPosition", window.scrollY);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -34,36 +37,42 @@ const AllRecipes = (props) => {
 
   const recipes = useSelector(selectRecipes);
 
-  const handleFilter = (newFilter) => {
-    console.log(newFilter)
+  const handleFilter = () => {
     setPage(1);
-    navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=1`);
-    dispatch(getAllRecipes({ intolerances: intolerances, type: mealType, page: 1 }));
+    navigate(
+      `/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=1`
+    );
+    dispatch(
+      getAllRecipes({ intolerances: intolerances, type: mealType, page: 1 })
+    );
   };
 
-    // Handle previous page navigation
-    const handlePreviousPage = () => {
-      const newPage = Math.max(page - 1, 1);
-      setPage(newPage);
-      navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${newPage}`);
-    };
-  
-    // Handle next page navigation
-    const handleNextPage = () => {
-      const newPage = page + 1;
-      setPage(newPage);
-      navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${newPage}`);
-    };
-  
-    // Handle page click
-    const handlePageClick = (pageNumber) => {
-      setPage(pageNumber);
-      navigate(`/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${pageNumber}`);
-    };
+  const handlePreviousPage = () => {
+    const newPage = Math.max(page - 1, 1);
+    setPage(newPage);
+    navigate(
+      `/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${newPage}`
+    );
+  };
+
+  const handleNextPage = () => {
+    const newPage = page + 1;
+    setPage(newPage);
+    navigate(
+      `/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${newPage}`
+    );
+  };
+
+  const handlePageClick = (pageNumber) => {
+    setPage(pageNumber);
+    navigate(
+      `/allrecipes/?intolerances=${intolerances}&mealType=${mealType}&page=${pageNumber}`
+    );
+  };
 
   return (
     <>
-    <div className="filter-container">
+      <div className="filter-container">
         <div>
           <label>Food Intolerance:</label>
           <select
@@ -101,30 +110,35 @@ const AllRecipes = (props) => {
         <button onClick={handleFilter}>Filter</button>
       </div>
       <div className="recipes-and-buttons-container">
-      <div className="all-recipes-container">
-        {recipes ? (
-          recipes.map((recipe) => (
-            <div className="recipe-container" key={recipe.id}>
-              <NavLink to={`/allrecipes/${recipe.id}`}>
-                <p id="recipe-name">{recipe.title}</p>
-                  <img style={{ width: '200px' }} src={recipe.image} alt={recipe.name} />  
-              </NavLink>
-            </div>
-          ))
-        ) : (
-          <p>Loading recipes...</p>
-        )}
-          </div>
-    <PrevNext
-       currentPage={page}
-       totalPages={totalPages}
-       totalEvents={totalEvents}
-       onPageClick={handlePageClick}
-       onNextClick={handleNextPage}
-       onPreviousClick={handlePreviousPage} />
+        <div className="all-recipes-container">
+          {recipes ? (
+            recipes.map((recipe) => (
+              <div className="recipe-container" key={recipe.id}>
+                <NavLink to={`/allrecipes/${recipe.id}`}>
+                  <p id="recipe-name">{recipe.title}</p>
+                  <img
+                    style={{ width: "200px" }}
+                    src={recipe.image}
+                    alt={recipe.name}
+                  />
+                </NavLink>
+              </div>
+            ))
+          ) : (
+            <p>Loading recipes...</p>
+          )}
         </div>
+        <PrevNext
+          currentPage={page}
+          totalPages={totalPages}
+          totalEvents={totalEvents}
+          onPageClick={handlePageClick}
+          onNextClick={handleNextPage}
+          onPreviousClick={handlePreviousPage}
+        />
+      </div>
     </>
   );
-}
+};
 
 export default AllRecipes;
