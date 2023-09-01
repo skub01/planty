@@ -1,39 +1,39 @@
 /* Global */
 
 @font-face {
-  font-family: 'Papernotes'; 
-  src: url('/fonts/Papernotes.ttf') format('truetype'),
+  font-family: "Papernotes";
+  src: url("/fonts/Papernotes.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Bubblegum'; 
-  src: url('/fonts/Bubblegum.ttf') format('truetype'), 
+  font-family: "Bubblegum";
+  src: url("/fonts/Bubblegum.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Cocogoose'; 
-  src: url('/fonts/Cocogoose.ttf') format('truetype'), 
+  font-family: "Cocogoose";
+  src: url("/fonts/Cocogoose.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Super Cereal'; 
-  src: url('/fonts/Super Cereal.ttf') format('truetype'), 
+  font-family: "Super Cereal";
+  src: url("/fonts/Super Cereal.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Hey Comic'; 
-  src: url('/fonts/Hey Comic.ttf') format('truetype'), 
+  font-family: "Hey Comic";
+  src: url("/fonts/Hey Comic.ttf") format("truetype");
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
-
 }
 
 #app {
-  background-image: url('/bg.jpg');
+  background-image: url("/bg.jpg");
   min-height: 100%;
   overflow: auto;
   background-size: cover;
@@ -65,13 +65,13 @@ body {
 
 .scroll {
   position: fixed;
-  font-size: 50px; 
+  font-size: 50px;
   bottom: 0;
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-  width: auto; /* Remove width: 100% */
-  color: #fff; /* Text color */
-  padding: 10px; /* Add some padding for better visibility */
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  color: #fff;
+  padding: 10px;
   z-index: 9999;
   animation: pulse 2s infinite;
   margin-bottom: 50px;
@@ -79,13 +79,13 @@ body {
 }
 
 .title {
-  font-family: 'Super Cereal';
+  font-family: "Super Cereal";
   font-size: 200px;
-  color: rgb(245, 230, 216); 
+  color: rgb(245, 230, 216);
   margin-bottom: 20px;
-font-style: italic;
- text-shadow: 4px 4px 6px rgb(58, 0, 112);
- margin-bottom: 400px;
+  font-style: italic;
+  text-shadow: 4px 4px 6px rgb(58, 0, 112);
+  margin-bottom: 400px;
 }
 
 h1 {
@@ -98,17 +98,17 @@ h1 {
 }
 
 .description {
-  font-family: 'Papernotes';
+  font-family: "Papernotes";
   letter-spacing: 1px;
   font-size: 45px;
   text-align: center;
-  color: rgb(245, 230, 216); 
+  color: rgb(245, 230, 216);
   padding: 100px;
   margin-bottom: 700px;
   margin-left: 50px;
   margin-right: 50px;
-  background-color: rgba(109,82,101,255);
-  border-radius: 50% 
+  background-color: rgba(109, 82, 101, 255);
+  border-radius: 50%;
 }
 
 .description p {
@@ -119,7 +119,7 @@ h1 {
 .pagination-info {
   color: white;
   font-size: 20px;
-font-style: bold;
+  font-style: bold;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -132,13 +132,19 @@ font-style: bold;
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .get-started-button {
-  font-family: 'Papernotes';
+  font-family: "Papernotes";
   font-size: 40px;
   animation: pulse 2s infinite;
   border-radius: 20px;
@@ -146,7 +152,6 @@ font-style: bold;
   box-shadow: 0 0 10px rgb(255, 247, 0);
   margin-bottom: 400px;
 }
-
 
 .container {
   max-width: 800px;
@@ -171,14 +176,14 @@ button {
 }
 
 button:hover {
-  background-color:rgb(255, 94, 35);
+  background-color: rgb(255, 94, 35);
 }
 
 .navbar-container {
-  background-color:#000000a5;
+  background-color: #000000a5;
   padding: 10px;
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   height: 100%;
 }
@@ -211,7 +216,7 @@ button:hover {
 
 .logout-button,
 .nav-auth-links {
-  display: flex; 
+  display: flex;
 }
 
 .logout-button {
@@ -245,21 +250,20 @@ button:hover {
   background-color: #f9f9f9;
 }
 
-
 .auth-form label {
   display: block;
   font-size: 14px;
   margin-bottom: 5px;
 }
 
- .auth-form input{
+.auth-form input {
   width: 93.5%;
   padding: 8px 12px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;
-} 
+}
 
 .auth-form button {
   width: 100%;
@@ -305,7 +309,7 @@ button:hover {
 }
 
 .back-to-search {
-  margin-top: 50px; 
+  margin-top: 50px;
   padding: 10px 20px;
   cursor: pointer;
 }
@@ -320,7 +324,6 @@ button:hover {
   height: 250px;
 }
 
-
 #recipe-name {
   font-weight: bold;
   margin-bottom: 10px;
@@ -329,11 +332,10 @@ button:hover {
 .pageButtons {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
   flex-wrap: wrap;
-
 }
 
 .pageButtons button {
@@ -345,12 +347,12 @@ button:hover {
   cursor: pointer;
   margin: 0 5px;
   height: 40px;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
 }
 
 .pageButtons button:hover {
-  background-color:  rgb(255, 94, 35);
+  background-color: rgb(255, 94, 35);
 }
 
 .recipe-details {
@@ -389,19 +391,19 @@ button:hover {
 }
 
 .single-recipe-container {
-background-color: rgba(222, 196, 171, 0.95);
-padding: 10px;
+  background-color: rgba(222, 196, 171, 0.95);
+  padding: 10px;
 }
 
 .single-recipe-container h2 {
-font-size: 42px;
-font-family: 'Papernotes';
-  }
+  font-size: 42px;
+  font-family: "Papernotes";
+}
 
 .ingredients-container {
   color: #222020;
   padding: 20px;
-  font-family: 'Papernotes';
+  font-family: "Papernotes";
   font-size: 22px;
 }
 
@@ -425,9 +427,8 @@ font-family: 'Papernotes';
   transform: scale(1.2);
 }
 
-
 .ingredients-container h1 {
-  font-family: 'Papernotes';
+  font-family: "Papernotes";
   letter-spacing: 1px;
   font-size: 40px;
   text-align: center;
@@ -448,27 +449,26 @@ font-family: 'Papernotes';
 .ingredients-container input[type="radio"],
 .ingredients-container input[type="checkbox"] {
   margin-right: 10px;
-  font-family: 'Papernotes';
+  font-family: "Papernotes";
   font-size: 22px;
 }
 
 .find-container {
   display: flex;
   flex-direction: row;
-    justify-content: center;
-align-content: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .find-recipes {
-    font-family: 'Papernotes';
-    font-size: 40px;
-    animation: pulse 2s infinite;
-    margin: 0 auto;
-    border-radius: 20px;
-    margin-bottom: 200px;
-    box-shadow: 0 0 10px rgb(255, 247, 0);
+  font-family: "Papernotes";
+  font-size: 40px;
+  animation: pulse 2s infinite;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-bottom: 200px;
+  box-shadow: 0 0 10px rgb(255, 247, 0);
 }
-
 
 .ingredients-container .ingredient-category {
   margin-bottom: 20px;
@@ -490,28 +490,23 @@ align-content: center;
   border-radius: 90px;
 }
 
-
 #dietaryRestrictions,
-#mealtype
-{
+#mealtype {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-font-size: 30px;
+  font-size: 30px;
 }
 
 #dietaryRestrictions h1,
-#mealtype h1
-{
-
-font-size: 60px;
+#mealtype h1 {
+  font-size: 60px;
 }
 
 #allIngredients {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
 }
 
 #dietaryRestrictions h1,
@@ -572,7 +567,6 @@ font-size: 60px;
   text-decoration: none;
 }
 
-
 .favorite-list a {
   color: #333;
   text-decoration: none;
@@ -592,11 +586,9 @@ font-size: 60px;
   text-decoration: underline;
 }
 
-
-
 .filter-container {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   font-size: 25px;
   align-items: center;
   font-family: "Papernotes";
