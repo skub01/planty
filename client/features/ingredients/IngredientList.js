@@ -72,8 +72,6 @@ export const ingredients = [
   { name: "Sage", category: "Herbs" },
   { name: "Thyme", category: "Herbs" },
 
-
-  { name: "Surprise Me!", category: "Any" },
  ]
 
 
@@ -87,7 +85,7 @@ export const ingredients = [
     { category: "Herbs", ingredients: ingredients.filter((ingredient) => ingredient.category === "Herbs") },
 
     { category: "Baking", ingredients: ingredients.filter((ingredient) => ingredient.category === "Baking") },
-    { category: "", ingredients: ingredients.filter((ingredient) => ingredient.category === "Any") },
+
   ];
 
 
