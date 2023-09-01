@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
@@ -18,12 +18,33 @@ const Home = (props) => {
     navigate("/ingredients");
   };
 
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolling(true);
+      } else {
+        setIsScrolling(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); 
+
   return (
     <div className="home-container">
       <h1 className="title" data-aos="zoom-in">
         Planty!
       </h1>
-
+      {!isScrolling && (
+        <div className="scroll" data-aos="zoom-in">
+          <p>Scroll</p>
+        </div>
+      )}
       <div className="description" data-aos="zoom-in">
         <p>
           Planty is a recipe search tool. Just enter the ingredients you have in

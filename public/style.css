@@ -59,6 +59,11 @@ body {
   justify-content: center;
 }
 
+.scroll {
+  color: white;
+  animation: pulse 2s infinite;
+}
+
 .title {
   font-family: 'Super Cereal';
   font-size: 200px;
@@ -66,7 +71,13 @@ body {
   margin-bottom: 20px;
 font-style: italic;
  text-shadow: 4px 4px 6px rgb(58, 0, 112);
- margin-bottom: 400px;
+ margin-bottom: 300px;
+}
+
+h1 {
+  font-size: 48px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .description {
@@ -124,13 +135,6 @@ font-style: bold;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-}
-
-/* Home Component */
-h1 {
-  font-size: 48px;
-  color: #333;
-  margin-bottom: 10px;
 }
 
 h4 {
