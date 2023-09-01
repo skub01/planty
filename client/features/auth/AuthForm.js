@@ -1,6 +1,6 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { authenticate } from '../../app/store';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { authenticate } from "../../app/store";
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -11,43 +11,68 @@ import { authenticate } from '../../app/store';
 const AuthForm = ({ name, displayName }) => {
   const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [customError, setCustomError] = useState("");
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const formName = evt.target.name;
     const username = evt.target.username.value;
     const password = evt.target.password.value;
+    const email = evt.target.email.value;
+    const confirmPassword = evt.target.confirmPassword.value;
+
+    const isValidEmail = (email) => {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
+    if (formName === "signup") {
+      if (!username || !password || !confirmPassword || !email) {
+        setCustomError("All fields are required.");
+        return;
+      } else if (password !== confirmPassword) {
+        setCustomError("Your passwords do not match. Please try again.");
+        return;
+      } else if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/)) {
+        setCustomError(
+          "Please enter a password with at least one lowercase and uppercase letter, one number, and a minimum of 8 characters."
+        );
+        return;
+      } else if (!isValidEmail(email)) {
+        setCustomError("Please enter a valid email.");
+        return;
+      }
+    }
 
     if (formName === "login") {
       dispatch(authenticate({ username, password, method: formName }));
     } else if (formName === "signup") {
-      const email = evt.target.email.value;
-    dispatch(authenticate({ username, password, email, method: formName }));
-  };}
+      dispatch(authenticate({ username, password, email, method: formName }));
+    }
+  };
 
   return (
     <div className="auth-form">
-       {name === "login" && (
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && {error}}
-      </form>
-        )}
-    {name === "signup" && (
+      {name === "login" && (
+        <form onSubmit={handleSubmit} name={name}>
+          <div>
+            <label htmlFor="username">
+              <small>Username</small>
+            </label>
+            <input name="username" type="text" />
+          </div>
+          <div>
+            <label htmlFor="password">
+              <small>Password</small>
+            </label>
+            <input name="password" type="password" />
+          </div>
+          <div>
+            <button type="submit">{displayName}</button>
+          </div>
+          {error && { error }}
+        </form>
+      )}
+      {name === "signup" && (
         <form onSubmit={handleSubmit} name={name}>
           <div>
             <label htmlFor="email">
@@ -68,11 +93,15 @@ const AuthForm = ({ name, displayName }) => {
             <input name="password" type="password" />
           </div>
           <div>
+            <label htmlFor="confirmPassword">
+              <small>Confirm Password</small>
+            </label>
+            <input name="confirmPassword" type="password" />
+          </div>
+          <div>
             <button type="submit">{displayName}</button>
           </div>
-          {error ? (
-            <div>Error with signup. Please double check your information.</div>
-          ) : null}
+          {customError && <div className="error-message">{customError}</div>}
         </form>
       )}
     </div>
