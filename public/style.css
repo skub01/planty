@@ -59,9 +59,23 @@ body {
   justify-content: center;
 }
 
+.scroll-container {
+  position: relative;
+}
+
 .scroll {
-  color: white;
+  position: fixed;
+  font-size: 50px; 
+  bottom: 0;
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  width: auto; /* Remove width: 100% */
+  color: #fff; /* Text color */
+  padding: 10px; /* Add some padding for better visibility */
+  z-index: 9999;
   animation: pulse 2s infinite;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .title {
@@ -71,12 +85,15 @@ body {
   margin-bottom: 20px;
 font-style: italic;
  text-shadow: 4px 4px 6px rgb(58, 0, 112);
- margin-bottom: 300px;
+ margin-bottom: 400px;
 }
 
 h1 {
   font-size: 48px;
   color: #333;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   margin-bottom: 10px;
 }
 

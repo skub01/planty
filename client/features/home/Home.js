@@ -40,11 +40,6 @@ const Home = (props) => {
       <h1 className="title" data-aos="zoom-in">
         Planty!
       </h1>
-      {!isScrolling && (
-        <div className="scroll" data-aos="zoom-in">
-          <p>Scroll</p>
-        </div>
-      )}
       <div className="description" data-aos="zoom-in">
         <p>
           Planty is a recipe search tool. Just enter the ingredients you have in
@@ -57,6 +52,12 @@ const Home = (props) => {
       <button className="get-started-button" onClick={handleGetStarted}>
         Let's get cooking!
       </button>
+
+      {!isScrolling && (
+    <div className="scroll" data-aos="zoom-in">
+      <p>Scroll</p>
+    </div>
+  )}
     </div>
   );
 };
