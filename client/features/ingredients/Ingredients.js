@@ -219,14 +219,14 @@ const Ingredients = (props) => {
         </div>
       ))}
       </div>
-      <label key="surprise" className="surprise-checkbox">
+      <label key="surprise" style={{ textAlign: 'center', marginTop: '30px', marginBottom: '20px', fontSize: '28px' }}>
       <input
                 type="checkbox"
                 name=""
                 checked={checkboxes[""] || false}
                 onChange={handleCheckboxChange}
               />
-              Surprise Me!
+              Or ... Surprise Me!
               </label>
       </div>
       <div className='find-container'>
