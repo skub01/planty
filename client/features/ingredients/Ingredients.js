@@ -219,6 +219,15 @@ const Ingredients = (props) => {
         </div>
       ))}
       </div>
+      <label key="surprise" className="surprise-checkbox">
+      <input
+                type="checkbox"
+                name="Surprise"
+                checked={checkboxes[""] || false}
+                onChange={handleCheckboxChange}
+              />
+              Surprise Me!
+              </label>
       </div>
       <div className='find-container'>
       <button className="find-recipes" onClick={handleFindRecipes}>Find recipes</button>
