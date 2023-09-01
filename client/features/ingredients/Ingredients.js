@@ -222,7 +222,7 @@ const Ingredients = (props) => {
       <label key="surprise" className="surprise-checkbox">
       <input
                 type="checkbox"
-                name="Surprise"
+                name=""
                 checked={checkboxes[""] || false}
                 onChange={handleCheckboxChange}
               />
