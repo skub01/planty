@@ -65,12 +65,12 @@ body {
 
 .scroll {
   position: fixed;
-  font-size: 50px;
+  font-size: 25px;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: auto;
-  color: #fff;
+  color: #ffffffbf;
   padding: 10px;
   z-index: 9999;
   animation: pulse 2s infinite;
@@ -86,7 +86,7 @@ body {
   margin-left: -10px;
   border-width: 10px;
   border-style: solid;
-  border-color: white transparent transparent transparent;
+  border-color: rgba(255, 255, 255, 0.742) transparent transparent transparent;
   z-index: 100;
 }
 
@@ -100,13 +100,13 @@ body {
   margin-bottom: 400px;
 }
 
-h1 {
+.ingredients-container h1 {
   font-size: 48px;
+  text-align: center;
   color: #333;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 10px;
+  margin-bottom: 200px;
 }
 
 .description {
