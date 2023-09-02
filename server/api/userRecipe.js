@@ -31,7 +31,6 @@ router.post("/:userId/addFavorite", async (req, res, next) => {
   }
 });
 
-//deletes favorite
 router.delete("/:userId/removeFavorite/:recipeId", async (req, res, next) => {
   try {
     const { userId, recipeId } = req.params;

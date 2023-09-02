@@ -1,8 +1,5 @@
-
-
-
 export const ingredients = [
-    { name: "Black Beans", category: "Legumes" },
+  { name: "Black Beans", category: "Legumes" },
   { name: "Chickpeas", category: "Legumes" },
   { name: "Kidney Beans", category: "Legumes" },
   { name: "Lentils", category: "Legumes" },
@@ -48,7 +45,6 @@ export const ingredients = [
   { name: "Pumpkin Seeds", category: "Nuts" },
   { name: "Sunflower Seeds", category: "Nuts" },
 
-
   { name: "Apple", category: "Fruits" },
   { name: "Avocado", category: "Fruits" },
   { name: "Banana", category: "Fruits" },
@@ -60,8 +56,6 @@ export const ingredients = [
   { name: "Orange", category: "Fruits" },
   { name: "Pear", category: "Fruits" },
 
-
-
   { name: "Basil", category: "Herbs" },
   { name: "Cilantro", category: "Herbs" },
   { name: "Green Onion", category: "Herbs" },
@@ -71,27 +65,49 @@ export const ingredients = [
   { name: "Rosemary", category: "Herbs" },
   { name: "Sage", category: "Herbs" },
   { name: "Thyme", category: "Herbs" },
+];
 
- ]
-
-
- export const ingredientCategories = [
-    { category: "Legumes", ingredients: ingredients.filter((ingredient) => ingredient.category === "Legumes") },
-    { category: "Grains", ingredients: ingredients.filter((ingredient) => ingredient.category === "Grains") },
-    { category: "Vegetables", ingredients: ingredients.filter((ingredient) => ingredient.category === "Vegetables") },
-    { category: "Fruits", ingredients: ingredients.filter((ingredient) => ingredient.category === "Fruits") },
-    { category: "Nuts/Seeds", ingredients: ingredients.filter((ingredient) => ingredient.category === "Nuts") },
-
-    { category: "Herbs", ingredients: ingredients.filter((ingredient) => ingredient.category === "Herbs") },
-
-    { category: "Baking", ingredients: ingredients.filter((ingredient) => ingredient.category === "Baking") },
-
-  ];
-
-
-
- 
- 
-
-
-    
+export const ingredientCategories = [
+  {
+    category: "Legumes",
+    ingredients: ingredients.filter(
+      (ingredient) => ingredient.category === "Legumes"
+    ),
+  },
+  {
+    category: "Grains",
+    ingredients: ingredients.filter(
+      (ingredient) => ingredient.category === "Grains"
+    ),
+  },
+  {
+    category: "Vegetables",
+    ingredients: ingredients.filter(
+      (ingredient) => ingredient.category === "Vegetables"
+    ),
+  },
+  {
+    category: "Fruits",
+    ingredients: ingredients.filter(
+      (ingredient) => ingredient.category === "Fruits"
+    ),
+  },
+  {
+    category: "Nuts/Seeds",
+    ingredients: ingredients.filter(
+      (ingredient) => ingredient.category === "Nuts"
+    ),
+  },
+  {
+    category: "Herbs",
+    ingredients: ingredients.filter(
+      (ingredient) => ingredient.category === "Herbs"
+    ),
+  },
+  {
+    category: "Baking",
+    ingredients: ingredients.filter(
+      (ingredient) => ingredient.category === "Baking"
+    ),
+  },
+];
