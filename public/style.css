@@ -91,8 +91,13 @@ body {
 }
 
 .recommended-container h1 {
+  font-family: "Papernotes";
+  padding: 30px;
+  letter-spacing: 1px;
+  margin-top: 100px;
   font-size: 60px;
-  color: red;
+  background-color:  rgba(222, 196, 171, 0.95);
+  color: rgb(0, 0, 0);
 }
 
 .title {
