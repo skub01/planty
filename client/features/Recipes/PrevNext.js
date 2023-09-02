@@ -57,23 +57,27 @@ const PrevNext = ({
             Viewing results {startResult}-{endResult} of {totalEvents}
           </p>
           <div className="pagination-buttons">
-            <button
-              onClick={onPreviousClick}
-              disabled={currentPage === 1}
-              variant="outline-light"
-              style={{}}
-            >
-              Previous
-            </button>
+          {currentPage !== 1 && (
+              <button
+                onClick={onPreviousClick}
+                disabled={currentPage === 1}
+                variant="outline-light"
+                style={{}}
+              >
+                Previous
+              </button>
+            )}
             {renderPageButtons()}
-            <button
-              onClick={onNextClick}
-              disabled={currentPage === totalPages || totalPages === 0}
-              variant="outline-light"
-              style={{}}
-            >
-              Next
-            </button>
+            {currentPage !== totalPages && totalPages !== 0 && (
+              <button
+                onClick={onNextClick}
+                disabled={currentPage === totalPages || totalPages === 0}
+                variant="outline-light"
+                style={{}}
+              >
+                Next
+              </button>
+            )}
           </div>
         </>
       ) : null}
