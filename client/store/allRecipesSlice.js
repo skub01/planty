@@ -20,7 +20,6 @@ export const getAllRecipes = createAsyncThunk(
       if (type) {
         params.type = type;
       }
-      console.log("params", params);
       const response = await axios.get(
         "https://api.spoonacular.com/recipes/complexSearch",
         {
@@ -61,7 +60,6 @@ export const getIngredientRecipes = createAsyncThunk(
         if (type) {
           params.type = type;
         }
-        console.log("params!!!", params);
         const response = await axios.get(
           "https://api.spoonacular.com/recipes/complexSearch",
           {
@@ -101,7 +99,6 @@ const allRecipesSlice = createSlice({
       state.totalResults = payload.total;
     });
     builder.addCase(getIngredientRecipes.fulfilled, (state, { payload }) => {
-      console.log("payload here:", payload);
       state.recipes = payload;
     });
   },

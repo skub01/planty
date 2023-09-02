@@ -17,8 +17,6 @@ const Recommended = () => {
     navigate("/ingredients");
   };
 
-  console.log('recipesssssss')
-
   return (
     <>
       <div className="recommended-container">
