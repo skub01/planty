@@ -205,6 +205,11 @@ button:hover {
   background-color: rgb(255, 94, 35);
 }
 
+.recipe-link {
+  text-decoration: none; 
+  color: inherit; 
+}
+
 .navbar-container {
   background-color: #000000a5;
   padding: 10px;

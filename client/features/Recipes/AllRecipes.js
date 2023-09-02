@@ -114,7 +114,7 @@ const AllRecipes = (props) => {
           {recipes ? (
             recipes.map((recipe) => (
               <div className="recipe-container" key={recipe.id}>
-                <NavLink to={`/allrecipes/${recipe.id}`}>
+                <NavLink to={`/allrecipes/${recipe.id}`} className="recipe-link">
                   <p id="recipe-name">{recipe.title}</p>
                   <img
                     style={{ width: "200px" }}
