@@ -439,6 +439,10 @@ button:hover {
   transform: scale(1.2);
 }
 
+.active {
+  background-color: rgb(245, 80, 21);
+}
+
 .ingredients-container h1 {
   font-family: "Papernotes";
   letter-spacing: 1px;
