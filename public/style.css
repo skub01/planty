@@ -78,6 +78,18 @@ body {
   margin-top: 50px;
 }
 
+.scroll::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%; 
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+  z-index: 100;
+}
+
 .title {
   font-family: "Super Cereal";
   font-size: 200px;
