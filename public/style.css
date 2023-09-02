@@ -109,6 +109,10 @@ body {
   margin-bottom: 200px;
 }
 
+#section-container3 {
+  scroll-margin: 120px;
+}
+
 .description {
   font-family: "Papernotes";
   letter-spacing: 1px;
@@ -116,7 +120,7 @@ body {
   text-align: center;
   color: rgb(245, 230, 216);
   padding: 100px;
-  margin-bottom: 700px;
+  margin-bottom: 500px;
   margin-left: 50px;
   margin-right: 50px;
   background-color: rgba(109, 82, 101, 255);
