@@ -231,7 +231,7 @@ const Ingredients = (props) => {
       </div>
       <div className='find-container'>
       <button className="find-recipes" onClick={handleFindRecipes}>Find recipes</button>
-      {recipes.length > 0 && <Recommended recipes={recipes} />}</div>
+  </div>
   </div>
 
 );

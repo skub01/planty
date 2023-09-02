@@ -90,6 +90,11 @@ body {
   z-index: 100;
 }
 
+.recommended-container h1 {
+  font-size: 60px;
+  color: red;
+}
+
 .title {
   font-family: "Super Cereal";
   font-size: 200px;

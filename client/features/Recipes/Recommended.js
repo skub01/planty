@@ -17,10 +17,12 @@ const Recommended = () => {
     navigate("/ingredients");
   };
 
+  console.log('recipesssssss')
+
   return (
     <>
       <div className="recommended-container">
-        {recipes ? (
+        {recipes.length > 0 ? (
           <>
             <div className="all-recipes-container">
               {recipes.map((recipe) => (
@@ -42,7 +44,7 @@ const Recommended = () => {
             </button>
           </>
         ) : (
-          <p>No recipes found! Try a different search.</p>
+          <h1>Looking for delicious recipes...</h1>
         )}
       </div>
     </>
