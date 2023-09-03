@@ -458,7 +458,7 @@ button:hover {
   transform: scale(1.2);
 }
 
-.active {
+button.active {
   background-color: rgb(245, 80, 21);
 }
 
