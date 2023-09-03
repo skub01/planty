@@ -1,15 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-//const apiKey = "bb962a282f1d4567a7587b0faea1ecd6";
-//const apiKey = "3e2c0b66e4a54b4aaf9fc39057ed1697";
-const apiKey = "97f28d44e25d49a687b086c42bae4aeb"
+import { REACT_APP_API_KEY } from '../../src/env';
 
 export const getAllRecipes = createAsyncThunk(
   "getAllRecipes",
   async ({ intolerances, type, page }) => {
     try {
       const params = {
-        apiKey: apiKey,
+        apiKey: REACT_APP_API_KEY,
         diet: "vegan",
         number: 8,
         offset: (page - 1) * 8,
@@ -26,7 +24,6 @@ export const getAllRecipes = createAsyncThunk(
           params: params,
         }
       );
-      console.log("!!!!!!", response);
       return {
         results: response.data.results,
         total: response.data.totalResults,
