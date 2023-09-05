@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { REACT_APP_API_KEY } from '../../src/env';
+import { REACT_APP_API_KEY } from '../../env';
 
 export const getFavoriteRecipes = createAsyncThunk(
   "favoriteRecipes/getFavoriteRecipes",
