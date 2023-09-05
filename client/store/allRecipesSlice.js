@@ -45,7 +45,7 @@ export const getIngredientRecipes = createAsyncThunk(
     while (retries <= maxRetries) {
       try {
         const params = {
-          apiKey: apiKey,
+          apiKey: REACT_APP_API_KEY,
           includeIngredients: currentIngredients.join(","),
           diet: "vegan",
           number: 4,
