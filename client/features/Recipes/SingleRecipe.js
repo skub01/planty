@@ -9,9 +9,6 @@ import {
   removeFavorite,
 } from "../../store/userRecipesSlice";
 import Toastify from "toastify-js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as outlineStar } from "@fortawesome/free-regular-svg-icons";
 
 const SingleRecipe = (props) => {
   const userId = useSelector((state) => state.auth.me.id);
@@ -104,26 +101,17 @@ const SingleRecipe = (props) => {
                   handleAddFavorite(recipe.id, recipe.title, recipe.image)
                 }
               >
-              {/*   <FontAwesomeIcon
-                  icon={
-                    favorites.some((fav) => fav.recipeId === recipe.id)
-                      ? solidStar
-                      : outlineStar
-                  }
+                <span
                   className={`star-icon ${
                     favorites.some((fav) => fav.recipeId === recipe.id)
                       ? "active"
                       : ""
                   }`}
-                /> */}
-<span
-  className={`star-icon ${
-    favorites.some((fav) => fav.recipeId === recipe.id) ? "active" : ""
-  }`}
->
-  {favorites.some((fav) => fav.recipeId === recipe.id) ? "★" : "☆"}
-</span>
-
+                >
+                  {favorites.some((fav) => fav.recipeId === recipe.id)
+                    ? "★"
+                    : "☆"}
+                </span>
               </button>
             </div>
             <img src={recipe.image} className="recipe-img" />
