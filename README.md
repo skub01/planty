@@ -1,4 +1,5 @@
 # Planty
+https://planty-enl7.onrender.com/
 
 Planty is a recipe search tool that provides users with delicious plant-based recipes. 
 
