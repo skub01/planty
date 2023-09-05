@@ -104,7 +104,7 @@ const SingleRecipe = (props) => {
                   handleAddFavorite(recipe.id, recipe.title, recipe.image)
                 }
               >
-                <FontAwesomeIcon
+              {/*   <FontAwesomeIcon
                   icon={
                     favorites.some((fav) => fav.recipeId === recipe.id)
                       ? solidStar
@@ -115,7 +115,15 @@ const SingleRecipe = (props) => {
                       ? "active"
                       : ""
                   }`}
-                />
+                /> */}
+<span
+  className={`star-icon ${
+    favorites.some((fav) => fav.recipeId === recipe.id) ? "active" : ""
+  }`}
+>
+  {favorites.some((fav) => fav.recipeId === recipe.id) ? "★" : "☆"}
+</span>
+
               </button>
             </div>
             <img src={recipe.image} className="recipe-img" />

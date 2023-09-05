@@ -452,6 +452,7 @@ button:hover {
 .star-icon {
   font-size: 32px;
   transition: transform 0.3s ease-in-out;
+  display: inline-block;
 }
 
 .star-icon.active {
