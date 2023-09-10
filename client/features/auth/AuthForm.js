@@ -21,6 +21,10 @@ const AuthForm = ({ name, displayName }) => {
 
     if (formName === "signup") {
       const confirmPassword = evt.target.confirmPassword.value;
+      const email = evt.target.email.value;
+      const isValidEmail = (email) => {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      };
       if (!username || !password || !confirmPassword || !email) {
         setCustomError("All fields are required.");
         return;
@@ -36,16 +40,12 @@ const AuthForm = ({ name, displayName }) => {
         setCustomError("Please enter a valid email.");
         return;
       }
+      dispatch(authenticate({ username, password, email, method: formName }));
     }
 
     if (formName === "login") {
       dispatch(authenticate({ username, password, method: formName }));
-    } else if (formName === "signup") {
-      const email = evt.target.email.value;
-      const isValidEmail = (email) => {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      };
-      dispatch(authenticate({ username, password, email, method: formName }));
+    } 
     }
   };
 
