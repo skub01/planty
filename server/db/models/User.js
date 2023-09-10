@@ -22,8 +22,21 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-  }
-})
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+    get() {
+      return this.getDataValue("password");
+    },
+  },
+  salt: {
+    type: Sequelize.STRING,
+    get() {
+      return this.getDataValue("salt");
+    },
+  },
+});
 
 module.exports = User
 
@@ -55,7 +68,9 @@ User.authenticate = async function({ username, password }){
 User.findByToken = async function(token) {
   try {
     const {id} = await jwt.verify(token, process.env.JWT)
-    const user = User.findByPk(id)
+    const user = await Users.findByPk(id, {
+      attributes: { include: ["password", "salt"] },
+    });
     if (!user) {
       throw 'nooo'
     }
@@ -73,7 +88,9 @@ User.findByToken = async function(token) {
 const hashPassword = async(user) => {
   //in case the password has been changed, we want to encrypt it with bcrypt
   if (user.changed('password')) {
-    user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+    const salt = await bcrypt.genSalt(SALT_ROUNDS);
+    user.password = await bcrypt.hash(user.password, salt);
+    user.salt = salt;
   }
 }
 
