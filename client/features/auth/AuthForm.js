@@ -47,7 +47,7 @@ const AuthForm = ({ name, displayName }) => {
       dispatch(authenticate({ username, password, method: formName }));
     } 
     }
-  };
+
 
   return (
     <div className="auth-form">
@@ -105,5 +105,6 @@ const AuthForm = ({ name, displayName }) => {
       )}
     </div>
   );
+      }
 
 export default AuthForm;
