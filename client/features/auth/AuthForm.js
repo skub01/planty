@@ -18,15 +18,16 @@ const AuthForm = ({ name, displayName }) => {
     const formName = evt.target.name;
     const username = evt.target.username.value;
     const password = evt.target.password.value;
+    const email = evt.target.email.value || null;
+    const confirmPassword = evt.target.confirmPassword.value || null;
 
     if (formName === "signup") {
-      const email = evt.target.email.value;
-      const confirmPassword = evt.target.confirmPassword.value;
+  
 
       const isValidEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       };
-      
+
       if (!username || !password || !confirmPassword || !email) {
         setCustomError("All fields are required.");
         return;
