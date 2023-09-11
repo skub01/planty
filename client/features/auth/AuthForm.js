@@ -15,14 +15,14 @@ const AuthForm = ({ name, displayName }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log('taaarrrrgeettttt', evt.target); 
     const formName = evt.target.name;
     const username = evt.target.username.value;
     const password = evt.target.password.value;
-    const email = evt.target.email.value ? evt.target.email.value : "";
-    const confirmPassword = evt.target.confirmPassword.value || "";
 
     if (formName === "signup") {
+      const email = evt.target.email.value || "";
+      const confirmPassword = evt.target.confirmPassword.value || "";
+
     const isValidEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       };
@@ -42,13 +42,12 @@ const AuthForm = ({ name, displayName }) => {
         setCustomError("Please enter a valid email.");
         return;
       }
+      dispatch(authenticate({ username, password, email, method: formName }));
     }
 
     if (formName === "login") {
       dispatch(authenticate({ username, password, method: formName }));
-    } else if (formName === "signup") {
-      dispatch(authenticate({ username, password, email, method: formName }));
-    }
+    } 
   };
 
   return (
