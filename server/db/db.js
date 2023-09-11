@@ -24,6 +24,10 @@ if(process.env.DATABASE_URL){
   };
 }
 
+console.log( 'provess ENV!!!!!', process.env.DB_HOST,
+process.env.DB_USER,
+process.env.DB_PASS)
+
 const db = new Sequelize(
-  process.env.DATABASE_URL || `postgres://localhost:5432/${planty}`, config)
+  process.env.DATABASE_URL /* || `postgres://localhost:5432/${planty}` */, config)
 module.exports = db
