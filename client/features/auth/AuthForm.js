@@ -9,7 +9,7 @@ import { authenticate } from "../../app/store";
 **/
 
 const AuthForm = ({ name, displayName }) => {
-  const { error } = useSelector((state) => state.auth);
+  const { error } = useSelector((state) => state.auth.error);
   const dispatch = useDispatch();
   const [customError, setCustomError] = useState("");
 
@@ -69,7 +69,7 @@ const AuthForm = ({ name, displayName }) => {
           <div>
             <button type="submit">{displayName}</button>
           </div>
-          {customError && <div className="error-message">{customError}</div>}
+          {error && { error }}
         </form>
       )}
       {name === "signup" && (
