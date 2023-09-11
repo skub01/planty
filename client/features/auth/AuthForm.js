@@ -69,7 +69,7 @@ const AuthForm = ({ name, displayName }) => {
           <div>
             <button type="submit">{displayName}</button>
           </div>
-          {error && { error }}
+          {customError && <div className="error-message">{customError}</div>}
         </form>
       )}
       {name === "signup" && (
