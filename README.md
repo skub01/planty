@@ -8,7 +8,7 @@ A user inputs their preferred ingredients and they are given a list of suggested
 Extra Features: 
 - Food intolerance filter
 - Meal type filter
-- Recipe suggestion randomizer
+- Recipe suggestions
 - Save recipes to favorites
 
 
