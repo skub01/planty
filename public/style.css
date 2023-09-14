@@ -666,5 +666,15 @@ button.active {
     font-size: 28px;
     margin-bottom: 100px; 
     padding: 5px;
+    border-radius: 10%;
   }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+  
+  .nav-auth-links {
+    font-size: 16px;
+  }
+
 }
