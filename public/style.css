@@ -682,7 +682,8 @@ button.active {
   }
 
   #app {
-    background-size: contain;
+    min-height: 50%;
+
   }
 
 }
