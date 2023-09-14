@@ -694,4 +694,8 @@ button.active {
     font-size: 8px; 
     padding: 5px;
 }
+
+#app {
+  background-image: url("/bg1.jpg");
+}
 }
