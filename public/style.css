@@ -1,28 +1,11 @@
-/* Global */
-
 @font-face {
   font-family: "Papernotes";
   src: url("/fonts/Papernotes.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: "Bubblegum";
-  src: url("/fonts/Bubblegum.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Cocogoose";
-  src: url("/fonts/Cocogoose.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "Super Cereal";
   src: url("/fonts/Super Cereal.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Hey Comic";
-  src: url("/fonts/Hey Comic.ttf") format("truetype");
 }
 
 html,
@@ -104,7 +87,6 @@ body {
   font-family: "Super Cereal";
   font-size: 200px;
   color: rgb(245, 230, 216);
-  margin-bottom: 20px;
   font-style: italic;
   text-shadow: 4px 4px 6px rgb(58, 0, 112);
   margin-bottom: 400px;
@@ -676,8 +658,7 @@ button.active {
 
 @media (max-width: 768px) {
   .title {
-    font-size: 48px;
-    margin-bottom: 10px;
+    font-size: 60px;
   }
 
   .description {
