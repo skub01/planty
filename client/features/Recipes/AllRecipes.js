@@ -107,7 +107,7 @@ const AllRecipes = (props) => {
             <option value="drink">Drink</option>
           </select>
         </div>
-        <button onClick={handleFilter}>Filter</button>
+        <button onClick={handleFilter} className="filter-button">Filter</button>
       </div>
       <div className="recipes-and-buttons-container">
         <div className="all-recipes-container">
