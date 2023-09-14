@@ -681,4 +681,8 @@ button.active {
     border-radius: 20px;
   }
 
+  #app {
+    background-size: contain;
+  }
+
 }
