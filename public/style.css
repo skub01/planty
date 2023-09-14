@@ -681,9 +681,9 @@ button.active {
     border-radius: 20px;
   }
 
-  #app {
-    min-height: 50%;
-
+  .filter-container label {
+    font-weight: bold;
+    font-size: 16px;
   }
 
 }
