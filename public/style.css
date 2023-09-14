@@ -677,4 +677,8 @@ button.active {
     font-size: 16px;
   }
 
+  .section-container {
+    border-radius: 20px;
+  }
+
 }
