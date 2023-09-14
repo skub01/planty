@@ -673,3 +673,15 @@ button.active {
 .filter-container button:hover {
   background-color: rgb(255, 94, 35);
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-size: 28px;
+    margin-bottom: 20px; 
+  }
+}
