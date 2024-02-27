@@ -1,5 +1,5 @@
 # Planty
-### https://planty-397715.web.app/
+### [Try the app here!](https://planty-397715.web.app/)
 
 Planty is a recipe search tool that provides users with delicious plant-based recipes. 
 
